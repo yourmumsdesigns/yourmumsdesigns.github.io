@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lulapay — Chanél Carstens, Senior Product Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #73AB84;
+    --black: #000501;
+    --bg: #FFFFFC;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--black);
+    background: var(--bg);
+  }
+
+  strong { font-weight: 600; }
+
+  /* NAV */
+  nav.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 48px;
+    max-width: 1240px;
+    margin: 0 auto;
+  }
+  .nav-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .back-arrow {
+    text-decoration: none;
+    color: var(--black);
+    font-size: 22px;
+    line-height: 1;
+    display: inline-block;
+    transition: color 0.2s;
+  }
+  .back-arrow:hover { color: var(--green); }
+  .nav-logo img { height: 30px; display: block; }
+  .nav-links {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--black);
+    font-size: 16px;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--green); }
+  .external::after { content: ' ↗'; font-size: 13px; }
+
+  /* CONTAINER */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+
+  /* TITLE */
+  .case-title {
+    text-align: center;
+    font-weight: 600;
+    font-size: 56px;
+    letter-spacing: -0.02em;
+    margin-top: 64px;
+    line-height: 1.1;
+  }
+  .case-title .accent {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--green);
+  }
+  .title-emojis {
+    text-align: center;
+    font-size: 28px;
+    margin-top: 16px;
+    margin-bottom: 80px;
+    letter-spacing: 8px;
+  }
+
+  /* TWO COLUMN */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+    margin-bottom: 96px;
+  }
+  .two-col p { margin-bottom: 18px; }
+
+  /* HEADINGS */
+  .section-h {
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--black);
+    line-height: 1.15;
+  }
+  .section-h.full { margin-top: 32px; }
+
+  /* PREVIEW IMAGES */
+  .preview {
+    width: 100%;
+    border-radius: 2px;
+    box-shadow: -16px 16px 0 0 var(--green);
+    display: block;
+  }
+  .preview-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+  }
+  .caption {
+    font-size: 13px;
+    text-align: center;
+    margin-top: 16px;
+    color: var(--black);
+  }
+
+  /* TL;DR */
+  .tldr {
+    border: 2px solid var(--green);
+    border-radius: 2px;
+    padding: 28px 36px;
+    max-width: 860px;
+    margin: 0 auto 96px;
+  }
+  .tldr h3 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  /* LISTS */
+  ul { padding-left: 22px; margin: 12px 0 18px; }
+  ul li { margin-bottom: 6px; }
+  .arrows { list-style: none; padding-left: 0; }
+  .arrows li { margin-bottom: 6px; }
+
+  /* SCOPE NOTE */
+  .scope-note {
+    font-style: italic;
+    font-size: 14px;
+    margin-top: 24px;
+    color: #444;
+  }
+
+  /* INTRO PROSE FOR TWO PORTALS */
+  .intro-prose { margin-bottom: 80px; }
+  .intro-prose p { margin-bottom: 18px; }
+
+  /* FUN FACT STAR */
+  .fun-fact {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    margin-top: 32px;
+  }
+  .fun-fact-star {
+    flex-shrink: 0;
+    width: 90px;
+    height: 90px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .fun-fact-star svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .fun-fact-star span {
+    position: absolute;
+    color: white;
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1.2;
+    letter-spacing: 0.5px;
+  }
+  .fun-fact-text { flex: 1; }
+  .fun-fact-text p { margin-bottom: 16px; }
+
+  /* UT QUOTES */
+  .ut-row {
+    display: grid;
+    grid-template-columns: auto 1fr 1fr;
+    gap: 28px;
+    align-items: center;
+    margin: 80px 0 96px;
+  }
+  .ut-badge {
+    width: 100px;
+    height: 90px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .ut-badge svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .ut-badge span {
+    position: absolute;
+    color: white;
+    font-weight: 700;
+    font-size: 10px;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1.2;
+    letter-spacing: 0.5px;
+    top: 52%;
+    transform: translateY(-50%);
+  }
+  .quote-box {
+    border: 2px solid var(--green);
+    border-radius: 2px;
+    padding: 22px 26px;
+    font-style: italic;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+  .quote-box cite {
+    display: block;
+    margin-top: 14px;
+    font-style: normal;
+    font-size: 13px;
+  }
+
+  /* DIVIDER */
+  .lightning-divider {
+    text-align: center;
+    margin: 32px 0 24px;
+  }
+  .lightning-divider svg {
+    width: 22px;
+    height: 36px;
+  }
+
+  /* CONTACT */
+  .contact {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    padding: 32px 0 96px;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .contact a.cat-link {
+    flex-shrink: 0;
+    display: block;
+  }
+  .contact img {
+    width: 110px;
+    height: auto;
+    display: block;
+  }
+  .contact p {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .contact a.text-link {
+    color: var(--green);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav.top { padding: 16px 20px; flex-wrap: wrap; gap: 16px; }
+    .nav-links { gap: 20px; font-size: 14px; }
+    .container { padding: 0 20px; }
+    .case-title { font-size: 32px; margin-top: 32px; }
+    .title-emojis { font-size: 22px; margin-bottom: 48px; }
+    .two-col {
+      grid-template-columns: 1fr;
+      gap: 32px;
+      margin-bottom: 64px;
+    }
+    .section-h { font-size: 24px; }
+    .ut-row { grid-template-columns: 1fr; gap: 16px; margin: 48px 0 64px; }
+    .ut-badge { margin: 0 auto; }
+    .fun-fact { flex-direction: column; align-items: flex-start; }
+    .contact { flex-direction: column; text-align: center; padding: 24px 20px 64px; }
+    .tldr { padding: 20px 24px; margin-bottom: 64px; }
+    .preview-stack { gap: 48px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="top">
+  <div class="nav-left">
+    <a href="index.html" class="back-arrow" aria-label="Back to portfolio">←</a>
+    <a href="index.html" class="nav-logo"><img src="assets/lulapay-logo.png" alt="Lulapay"></a>
+  </div>
+  <div class="nav-links">
+    <a href="index.html#projects">Projects</a>
+    <a href="testimonials.html">Testimonials</a>
+    <a href="#contact">Contact</a>
+    <a href="https://www.linkedin.com/in/chanel-carstens" target="_blank" rel="noopener" class="external">LinkedIn</a>
+  </div>
+</nav>
+
+<!-- TITLE -->
+<div class="container">
+  <h1 class="case-title">B2B BNPL - but make it <span class="accent">sexy &amp; simple</span></h1>
+  <div class="title-emojis">⚡ 😎 ⚡</div>
+</div>
+
+<!-- INTRO -->
+<div class="container">
+  <div class="two-col">
+    <div>
+      <p>Lulapay is Lula's <strong>B2B Buy-Now-Pay-Later product for South African SMEs</strong>, and it was their fastest-growing product. For five years, the entire experience ran on a Google form, spreadsheets, and a lot of very patient support staff.</p>
+      <p>The numbers said this needed to be a real product. The sales model said suppliers needed a self-service link they could send customers, because every new customer meant another support ticket, another Excel sheet, another call to ask "how much do I owe?"</p>
+      <p>That wasn't a UX problem. It was a <strong>scale problem</strong>. And this is how I solved it.</p>
+    </div>
+    <div>
+      <img src="assets/lulapay-object-1.gif" alt="Lulapay prototype preview" class="preview">
+      <p class="caption">Object 1: A preview of the current prototype used for customer usability testing.</p>
+    </div>
+  </div>
+</div>
+
+<!-- TL;DR -->
+<div class="container">
+  <div class="tldr">
+    <h3>TL;DR</h3>
+    <p>Lulapay was Lula's fastest-growing product and it was running entirely on a Google Form, spreadsheets, and a lot of very patient support staff. I owned the project end-to-end: research, design, testing, dev handover, and rollout comms, across desktop and mobile, for two connected portals. The hardest part wasn't the screens, it was figuring out what a fintech product that touches people's money actually needs to feel trustworthy, clear, and self-sufficient. I handed over a tested, dev-ready product with off-system comms.</p>
+  </div>
+</div>
+
+<!-- A SPREADSHEET, A GOOGLE FORM -->
+<div class="container">
+  <div class="two-col">
+    <div>
+      <img src="assets/lulapay-googleform.png" alt="Lulapay sign-up Google form" class="preview">
+      <p class="caption">Object 2: The current Lulapay sign up Google form</p>
+    </div>
+    <div>
+      <h2 class="section-h">A Spreadsheet, A Google Form, And A Fast Growing Product</h2>
+      <p>Before I joined the Lulapay team, how were customers using the service? A Google form. If you wanted any information about your facility, a cost breakdown, repayment schedule, anything, you had to contact support during office hours and wait for someone to build you an Excel snapshot.<br>A snapshot that was already <strong>out of date by the time it hit your inbox</strong>.</p>
+      <p>Lulapay's customers are loyal. Some had been using the product for five years. They didn't leave, but they had been asking for a self-service portal from the beginning.</p>
+      <p>The advantage of running a product entirely through email for that long? We had <strong>years of real, unfiltered user feedback</strong>. We knew exactly what frustrated people, what they kept asking for, and what they genuinely loved. We didn't need to start from scratch, we needed to <strong>build what users had already told us they needed</strong>.</p>
+    </div>
+  </div>
+</div>
+
+<!-- THE BRIEF WAS A PORTAL -->
+<div class="container">
+  <div class="two-col">
+    <div>
+      <h2 class="section-h">The Brief Was A Portal. The Problem Was The Experience.</h2>
+      <p>Build a portal was the brief. But the deeper problem was this:</p>
+      <p><strong>Users lacked visibility and control in the Lulapay experience.</strong></p>
+      <p><strong>For suppliers</strong></p>
+      <ul>
+        <li>long turnaround times</li>
+        <li>dependency on the Lula team for basic actions</li>
+        <li>no way to see whether a customer had enough available facility before sending a request</li>
+      </ul>
+      <p><strong>For customers</strong></p>
+      <ul>
+        <li>no way to track payment requests</li>
+        <li>understand what they owed</li>
+        <li>manage repayments proactively unless they called someone</li>
+      </ul>
+      <p>Internally, the support team was spending significant time bridging these gaps. Serviceable, but not sustainable for a product growing this fast.</p>
+      <p><strong>The design challenge:</strong><br>
+      <strong>How might we</strong> give suppliers and customers more autonomy, clarity, and ease, without overcomplicating the experience or overwhelming them on day one?</p>
+      <p class="scope-note">A note on scope: the PO was on maternity leave for 90% of this project. I owned the full scope, design, functionality scoping, dev liaison, QA tickets, testing, and rollout, end to end.</p>
+    </div>
+    <div>
+      <img src="assets/lulapay-object-3.png" alt="Supplier user journey and requirement alignment" class="preview">
+      <p class="caption">Object 3: Supplier user journey and requirement alignment with priority matrix</p>
+    </div>
+  </div>
+</div>
+
+<!-- DESIGNING WHERE THE MONEY LIVES -->
+<div class="container">
+  <div class="two-col">
+    <div class="preview-stack">
+      <div>
+        <img src="assets/lulapay-object-4.png" alt="Ideation and planning board snippet" class="preview">
+        <p class="caption">Object 4: Snippet of ideation and planning board</p>
+      </div>
+      <div>
+        <img src="assets/lulapay-object-5.png" alt="Early customer portal wireframes" class="preview">
+        <p class="caption">Object 5: Early customer portal wireframes</p>
+      </div>
+    </div>
+    <div>
+      <h2 class="section-h">Designing Where The Money Lives</h2>
+      <p>With years of user proximity and a clear problem statement, ideation was focused rather than exploratory. <strong>I looked at international B2B BNPL platforms</strong> (local competitors barely existed at the time) to understand what worked, what didn't, and what patterns users already had intuitions about.</p>
+      <p>But Lulapay isn't just a portal, it's a funding product. That meant <strong>designing around credit checks, financial regulations, data flowing through Lula's backend systems</strong>, and the very real risk of overwhelming first-time users on a product where money is on the line.</p>
+      <p>I used a <strong>Shift-Left approach</strong>: bringing Engineering and QA into the ideation stage rather than handing over polished designs later. This kept feasibility conversations happening early, which meant fewer surprises and smarter decisions.<br>I also kept in constant touch with the VP and client-facing teams, to ensure we remained aligned on our outcomes.</p>
+      <p>The <strong>north star</strong> for both portals: Simple. Clear. Designed for ease of use from day one.</p>
+    </div>
+  </div>
+</div>
+
+<!-- TWO PORTALS, FOUR SURFACES, ONE PRODUCT -->
+<div class="container">
+  <h2 class="section-h full">Two Portals, Four Surfaces, One Product</h2>
+  <div class="intro-prose">
+    <p>With clear user goals and constraints in mind, I started building out interactive prototypes for both supplier and customer portals.</p>
+    <p>The aim wasn't just to visualise the flow, it was to simulate the experience:<br>how users would interact, what they would see first, and where they might get stuck.</p>
+    <p>I focused on designing something that felt familiar and easy to understand, especially since BNPL is still a relatively novel concept in the B2B space.</p>
+    <p>I designed desktop and mobile experiences for both the supplier and customer portals, four surfaces in total.</p>
+  </div>
+
+  <!-- For suppliers -->
+  <div class="two-col">
+    <div>
+      <p><strong>For suppliers</strong>, the core functionality included:</p>
+      <ul>
+        <li>A simple onboarding/introduction journey</li>
+        <li>Adding customers</li>
+        <li>Sending payment requests</li>
+        <li>Viewing customer status and available facility</li>
+        <li>Tracking current payment requests and statuses</li>
+        <li>Basic reporting</li>
+        <li>Profile and settings management</li>
+      </ul>
+      <p>Because adding customers and sending payment requests were the primary tasks, I designed those actions to be accessible no matter what screen the supplier was on.</p>
+      <p>The supplier journey was designed to be simple and task-focused:</p>
+      <ul class="arrows">
+        <li>→ Add a customer</li>
+        <li>→ Send a payment request</li>
+        <li>→ Confirm payment status</li>
+        <li>→ Get paid</li>
+      </ul>
+    </div>
+    <div class="preview-stack">
+      <div>
+        <img src="assets/lulapay-object-6.png" alt="Supplier user journeys" class="preview">
+        <p class="caption">Object 6: Supplier user journeys</p>
+      </div>
+      <div>
+        <img src="assets/lulapay-object-7.gif" alt="Active supplier portal" class="preview">
+        <p class="caption">Object 7: Active supplier portal</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- For customers -->
+  <div class="two-col">
+    <div>
+      <p><strong>For customers</strong>,</p>
+      <ul>
+        <li>An onboarding flow that would capture all information credit required in order to open facility, avoiding any additional requests later on</li>
+        <li>The ability to add suppliers</li>
+        <li>Accept, edit or decline payment requests</li>
+        <li>Real-time tracking of their facility</li>
+        <li>Visibility of next payment amounts and dates</li>
+        <li>Encouragement to settle early</li>
+        <li>Requests to increase their facility</li>
+      </ul>
+      <p>Unlike suppliers, customer interactions were ongoing. There was more nuance and more information to manage. So I focused on making that information:</p>
+      <ul class="arrows">
+        <li>→ Easy to find</li>
+        <li>→ Easy to understand</li>
+        <li>→ Consistent across all pages</li>
+      </ul>
+      <p>At this stage, I wasn't aiming for a polished final product. I was aiming for something testable: a clickable, guided experience that could surface gaps, confusion or friction points before it got to development.</p>
+      <div class="fun-fact">
+        <div class="fun-fact-star" aria-hidden="true">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="50,3 61.8,38.2 98.4,38.2 68.8,59.8 80.2,95 50,73.2 19.8,95 31.2,59.8 1.6,38.2 38.2,38.2" fill="#73AB84"/>
+          </svg>
+          <span>Fun<br>Fact</span>
+        </div>
+        <div class="fun-fact-text">
+          <p>One deliberate call: the "Settle early and save" calculator. Early settlement benefits Lula's business model, and users with cash available often didn't know it was even an option. Making that visible and tangible, with a slider showing exact savings at different points, turned a hidden feature into a motivating one.</p>
+          <p>On design system thinking: I stay close to the DS by default, because designing or building something twice is fun for no-one. But during testing, I identified a specific case where our notification colours weren't working. Users weren't registering them as alerts. I made the call to break from the DS there, documented the reasoning, and flagged it as a component worth revisiting.</p>
+        </div>
+      </div>
+    </div>
+    <div class="preview-stack">
+      <div>
+        <img src="assets/lulapay-object-8.png" alt="Customer portal requirements" class="preview">
+        <p class="caption">Object 8: Customer portal requirements</p>
+      </div>
+      <div>
+        <img src="assets/lulapay-object-9.png" alt="Active customer portal" class="preview">
+        <p class="caption">Object 9: Active customer portal</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TWELVE USERS SAID YES -->
+<div class="container">
+  <div class="two-col">
+    <div>
+      <h2 class="section-h">Twelve Users Said Yes</h2>
+      <p>I planned and ran <strong>usability testing with 12 participants across both portals</strong>, 6 suppliers, 6 customers, covering a range of experience levels, industries, and demographics.</p>
+      <p>I wanted to stay focus on our outcome questions and constantly referred back to them to ensure we were solving for our customers and validating any assumptions we had.</p>
+      <p>I wrote the test script, recruited participants in coordination with the VP and customer-facing teams, facilitated every session, and sent stakeholder debriefs after each test day.</p>
+      <p><strong>What we learned:</strong></p>
+      <p><strong>Supplier portal:</strong></p>
+      <ul>
+        <li>High task completion across the board. All participants said they were confident they could master the portal with time.</li>
+        <li>100% said the portal would be useful and valuable.</li>
+        <li>100% were excited about the release and expected it to speed up their process significantly.</li>
+        <li>One clear friction point: users instinctively tried to hover over status badges for more information, but the tooltip was hard to find. Once they found it, they referenced it constantly.</li>
+      </ul>
+    </div>
+    <div>
+      <img src="assets/lulapay-object-10.png" alt="Graphs of findings from usability testing" class="preview">
+      <p class="caption">Object 10: Graphs of findings from our usability testing (information redacted)</p>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <img src="assets/lulapay-object-11.png" alt="Notes captured during a Supplier testing session" class="preview">
+      <p class="caption">Object 11: Notes captured by my notetaker during one of our Supplier testing sessions</p>
+    </div>
+    <div>
+      <p><strong>Customer portal:</strong></p>
+      <ul>
+        <li>100% found the guided walkthrough valuable.</li>
+        <li>The "Settle early and save" calculator was a standout reaction. Users found it motivating, and multiple participants immediately asked for one addition: the full settlement amount, not just the savings. I implemented it.</li>
+        <li>Same status discoverability issue as the supplier portal surfaced here too.</li>
+      </ul>
+      <p><strong>What changed as a result:</strong></p>
+      <ul>
+        <li>Hover-activated tooltips added to status badges on both portals</li>
+        <li>Ability to add a note to declined or edited requests</li>
+        <li>Notification colour updated (breaking intentionally from the DS)</li>
+        <li>Full settlement amount added to the early settlement calculator</li>
+        <li>"Created date" column added to customer portal</li>
+      </ul>
+      <p><strong>I compiled two final deliverables</strong>: a stakeholder-facing summary with themes and highlights, and a dev-ready implementation doc with prioritised recommendations, quick wins, and a backlog for future sprints.</p>
+    </div>
+  </div>
+</div>
+
+<!-- UT QUOTES -->
+<div class="container">
+  <div class="ut-row">
+    <div class="ut-badge" aria-hidden="true">
+      <svg viewBox="0 0 100 90" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="50,5 95,85 5,85" fill="#73AB84"/>
+      </svg>
+      <span>UT<br>Quotes</span>
+    </div>
+    <div class="quote-box">
+      "It has all the little things I was worried about — the things I've been struggling with."
+      <cite>- Participant 2, F, 40-49, Gauteng</cite>
+    </div>
+    <div class="quote-box">
+      "Seeing this come to life, I think Lulapay is an awesome product, and this sort of platform will allow suppliers to track and trace whats happening on their clients facilities, it's above the rest"
+      <cite>— Participant 9, m, 30-39, Western Cape</cite>
+    </div>
+  </div>
+</div>
+
+<!-- THE OFF-PLATFORM EXPERIENCE -->
+<div class="container">
+  <div class="two-col">
+    <div>
+      <h2 class="section-h">The Off-Platform Experience</h2>
+      <p>Once testing was complete and designs were iterated, I worked with the scrum master to <strong>create dev and QA tickets for both portals</strong>, and collaborated with the product and marketing teams on <strong>rollout planning</strong>.</p>
+      <p>One piece that often gets overlooked: <strong>the off-platform experience.</strong><br>
+      Lulapay's onboarding involves legal agreements, credit checks, and first-time interactions with a fintech product. The email comms needed to earn trust at every step. Around 50 emails needed to exist before launch, covering invites, repayment reminders, status changes, and edge cases, all in plain language with no jargon.</p>
+      <p>I wrote them with AI as a drafting partner. Days instead of weeks, while I was running QA sessions, supporting dev, and finishing the mobile design. AI also helped me pattern-match across 12 usability sessions and surface findings I might have missed at the volume I was working at. This was early days for AI in design workflows. It's standard now, but at the time it was the difference between handing over a complete product and handing over a half-finished one.</p>
+      <p><strong>By the time I handed over</strong>, Lulapay had:</p>
+      <ul>
+        <li>Two fully tested, dev-ready portals (desktop and mobile)</li>
+        <li>A staged rollout plan</li>
+        <li>A complete set of onboarding and lifecycle email comms</li>
+        <li>A prioritised backlog based directly on user research</li>
+        <li>A mobile design already underway</li>
+      </ul>
+      <p>The portal didn't just replace a Google form. It gave a fast-growing fintech product the infrastructure to scale.</p>
+    </div>
+    <div>
+      <img src="assets/lulapay-object-mobile.gif" alt="Supplier mobile experience" class="preview">
+      <p class="caption">Object 12: A sneaky peek at the supplier mobile experience</p>
+    </div>
+  </div>
+</div>
+
+<!-- LIGHTNING DIVIDER -->
+<div class="lightning-divider" aria-hidden="true">
+  <svg viewBox="0 0 22 36" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="13,0 0,20 9,20 7,36 22,14 13,14 17,0" fill="#73AB84"/>
+  </svg>
+</div>
+
+<!-- CONTACT -->
+<div class="container" id="contact">
+  <div class="contact">
+    <a href="index.html#contact" class="cat-link" aria-label="Get in touch">
+      <img src="assets/lulapay-contact-cat.png" alt="">
+    </a>
+    <p>If you have any questions or would like to get in touch, click on the box ← here to <a href="index.html#contact" class="text-link">contact me</a> or look at some of my other projects.</p>
+  </div>
+</div>
+
+</body>
+</html>
