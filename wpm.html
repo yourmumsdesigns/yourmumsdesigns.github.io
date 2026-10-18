@@ -62,12 +62,16 @@
   .float-r { float: right; width: 46%; margin: 6px 0 36px 56px; }
 
   /* HERO */
-  .hero { max-width: 900px; margin: 0 auto 96px; padding-left: 16px; }
+  .two.opening { grid-template-columns: 1fr 1.05fr; align-items: center; }
+  .hero { padding-left: 16px; }
+  .hero figcaption { margin-top: 26px; }
 
   /* OPENING */
   .two { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
   .two.lopsided { grid-template-columns: 1fr 1.15fr; }
-  .tldr { border: 2px solid var(--black); border-radius: 2px; padding: 30px 32px 26px; background: #fff; position: relative; box-shadow: -10px 10px 0 0 var(--green); margin-top: 40px; }
+  .tldr { border: 2px solid var(--black); border-radius: 2px; padding: 30px 32px 26px; background: #fff; position: relative; box-shadow: -10px 10px 0 0 var(--green); margin: 72px auto 0; max-width: 900px; }
+  .tldr ul { columns: 2; column-gap: 48px; }
+  .tldr li { break-inside: avoid; }
   .tldr .stamp { position: absolute; top: -14px; left: 24px; background: var(--black); color: var(--bg); font-size: 12px; font-weight: 700; letter-spacing: 0.14em; padding: 4px 10px; }
   .tldr ul { padding-left: 20px; }
   .tldr li { margin-bottom: 10px; }
@@ -86,7 +90,8 @@
 
   /* BENCHMARK ROW */
   .bench { display: grid; grid-template-columns: auto auto 1fr; gap: 28px; align-items: center; background: var(--green-wash); border-radius: 2px; padding: 28px 32px; }
-  .bench .logos { display: flex; flex-wrap: wrap; gap: 8px; max-width: 260px; }
+  .bench .logos { display: grid; grid-template-columns: repeat(2, auto); gap: 8px; justify-content: start; }
+  .bench .logos span { text-align: center; }
   .bench .logos span { background: #fff; border: 1.5px solid var(--black); border-radius: 999px; padding: 4px 14px; font-size: 14px; font-weight: 500; }
   .bench .arrow { font-size: 28px; color: var(--green-text); }
   .bench p { margin: 0; font-size: 17px; }
@@ -96,6 +101,8 @@
   .ba { display: grid; grid-template-columns: 1fr 1.35fr; gap: 56px; align-items: start; margin: 40px 0 72px; }
   .ba-label { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 3px 10px; margin-bottom: 16px; border: 2px solid var(--black); }
   .ba-label.after { background: var(--black); color: var(--bg); }
+
+  .sol-hero { max-width: 860px; margin: 40px auto 72px; padding-left: 16px; }
 
   /* SOLUTION PANEL */
   .solution { border: 2px solid var(--black); border-radius: 2px; background: #fff; display: grid; grid-template-columns: 300px 1fr; margin-bottom: 56px; box-shadow: -10px 10px 0 0 var(--green); }
@@ -125,6 +132,7 @@
   .tier.o { background: var(--green); }
   .tier.f { background: var(--green-tint); }
 
+  .journey { margin: 56px 0 0; padding-left: 16px; }
   .pull { font-family: 'Domine', Georgia, serif; font-size: 26px; line-height: 1.4; border-top: 2px solid var(--black); border-bottom: 2px solid var(--black); padding: 30px 24px; margin: 64px auto 0; text-align: center; max-width: 900px; }
 
   /* SIDEBAR */
@@ -138,6 +146,7 @@
   .note .ico { width: 44px; height: 44px; margin-bottom: 14px; }
   .note p:last-child { margin-bottom: 0; }
 
+  .handover-shot { max-width: 920px; margin: 80px auto 0; padding-left: 16px; }
   .funfact { display: flex; align-items: center; gap: 28px; max-width: 660px; margin: 72px auto 0; }
   .rosette { width: 120px; flex-shrink: 0; transform: rotate(-8deg); }
   .funfact .bubble { background: #fff; border: 2px dashed var(--green-text); border-radius: 18px; padding: 20px 24px; position: relative; }
@@ -147,8 +156,9 @@
 
   /* EXHIBIT B */
   .exb { display: grid; grid-template-columns: 1fr 0.85fr; gap: 64px; align-items: start; }
-  .verdict-box { background: var(--black); color: var(--bg); padding: 24px 28px; border-radius: 2px; margin-top: 48px; }
-  .verdict-box small { display: block; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--green); font-weight: 700; margin-bottom: 6px; }
+  .verdict-box { background: var(--green-tint); border: 2px solid var(--black); padding: 22px 26px; border-radius: 16px; margin-top: 56px; display: flex; gap: 20px; align-items: center; box-shadow: -8px 8px 0 0 var(--green); }
+  .verdict-box .robot { width: 72px; flex-shrink: 0; transform: rotate(-6deg); }
+  .verdict-box small { display: block; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--green-text); font-weight: 700; margin-bottom: 6px; }
   .verdict-box p { margin: 0; font-size: 17px; }
 
   /* CLOSING */
@@ -163,6 +173,8 @@
   .verdict { text-align: center; }
   .verdict blockquote { font-family: 'Domine', Georgia, serif; font-size: 38px; line-height: 1.3; margin: 12px auto 28px; max-width: 820px; }
   .verdict blockquote::before { content: '“'; display: block; font-size: 96px; line-height: .7; color: var(--green); }
+  .verdict .quotes { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; max-width: 900px; margin: 8px auto 32px; text-align: left; }
+  .verdict .quotes p { margin: 0; border: 2px solid var(--black); border-radius: 2px; padding: 22px 24px; font-style: italic; background: #fff; box-shadow: -8px 8px 0 0 var(--green); }
   .verdict cite { font-style: normal; font-size: 14px; color: var(--muted); }
   .verdict cite b { color: var(--black); }
 
@@ -182,8 +194,9 @@
     .case-title { font-size: 32px; margin-top: 32px; }
     section.container, section.block { margin-bottom: 80px; }
     .section-h { font-size: 26px; }
-    .hero { margin-bottom: 64px; }
-    .two, .two.lopsided, .ba, .exb, .notes, .files { grid-template-columns: 1fr; gap: 40px; }
+    .tldr ul { columns: 1; }
+    .tldr { margin-top: 56px; }
+    .two, .two.lopsided, .two.opening, .ba, .exb, .notes, .files { grid-template-columns: 1fr; gap: 40px; }
     .cards { grid-template-columns: 1fr; gap: 24px; }
     .float-r { float: none; width: auto; margin: 8px 0 40px 16px; }
     .bench { grid-template-columns: 1fr; gap: 12px; }
@@ -197,7 +210,10 @@
     .stamp-r { top: 62px; transform: rotate(-6deg); right: auto; left: 28px; font-size: 12px; }
     .file h3 { margin-bottom: 0; }
     .verdict blockquote { font-size: 26px; }
-    .pull { font-size: 20px; }
+    .verdict .quotes { grid-template-columns: 1fr; }
+    .verdict-box { flex-direction: column; text-align: center; }
+    .journey { margin: 56px 0 0; padding-left: 16px; }
+  .pull { font-size: 20px; }
   }
 </style>
 </head>
@@ -225,14 +241,11 @@
     <span><b>Role</b> · Sole Senior Product Designer, acting PM for Key Dates</span>
     <span><b>When</b> · 2025 to 2026</span>
   </div>
-  <figure class="hero">
-    <img src="assets/wpm-hero.jpg" alt="Research presentation cover slide: We love Tasks, yes, we do. We love Tasks, and our users could too." class="shot">
-  </figure>
 </div>
 
 <!-- OPENING STATEMENT -->
 <section class="container">
-  <div class="two">
+  <div class="two opening">
     <div>
       <span class="eyebrow">Context</span>
       <h2 class="section-h">Opening Statement</h2>
@@ -240,7 +253,12 @@
       <p>Work Product Management (WPM) is the part of Co-Flo that keeps that work moving: the tasks, deadlines and owners between a document being drafted and a matter being closed.</p>
       <p>I was the sole Senior Product Designer on two connected WPM workstreams. <strong>Tasks</strong> started as a facelift and became a research-led redesign. <strong>Key Dates</strong> was a new capability I owned end to end after our Head of Product, who was also my PM, left the business.</p>
     </div>
-    <div class="tldr">
+    <figure class="hero">
+      <img src="assets/wpm-hero.jpg" alt="Research presentation cover slide: We love Tasks, yes, we do. We love Tasks, and our users could too." class="shot">
+      <figcaption>The cover of the research deck I presented with the Head of Product.</figcaption>
+    </figure>
+  </div>
+  <div class="tldr">
       <span class="stamp">TL;DR</span>
       <ul>
         <li>I built my own Pendo dashboards for Tasks and found retention had fallen to <strong>3%</strong>. The facelift brief became a redesign.</li>
@@ -248,7 +266,6 @@
         <li>When my PM left and my dev lead went on leave at the same time, I ran product for Key Dates: <strong>four PRDs</strong>, stakeholder sessions and the design team's priorities.</li>
         <li>My design handover format and a Claude skill I built for writing PRDs both became <strong>team standards</strong>.</li>
       </ul>
-    </div>
   </div>
 </section>
 
@@ -320,18 +337,10 @@
     <p>My answer was universal task creation: one way to create a task from anywhere in Co-Flo's three products, without leaving what you're doing.</p>
   </div>
 
-  <div class="ba">
-    <figure>
-      <span class="ba-label">Before</span>
-      <img src="assets/create-task-preview.gif" alt="Animation of the old route to create a task through a row's actions menu" class="shot">
-      <figcaption>Object 2: The old route to creating a task.</figcaption>
-    </figure>
-    <figure>
-      <span class="ba-label after">After</span>
-      <img src="assets/wpm-new-task-journey.jpg" alt="Annotated screens of the new add task side panel, with developer notes on each state" class="shot">
-      <figcaption>Object 3: Universal task creation, with the developer notes from my handover.</figcaption>
-    </figure>
-  </div>
+  <figure class="sol-hero">
+    <img src="assets/create-task-preview.gif" alt="Animation of universal task creation: the add task side panel opens over the workspace, the workspace is already filled in, and the task is added" class="shot">
+    <figcaption>Object 2: Universal task creation in action.</figcaption>
+  </figure>
 
   <div class="solution">
     <div class="metric">
@@ -372,14 +381,14 @@
     </div>
     <figure style="padding-top:48px">
       <img src="assets/wpm-key-dates-listing.jpg" alt="Key Dates listing showing each date's parent, countdown, status, owner and task progress" class="shot border">
-      <figcaption>Object 4: Key Dates in listing view, with status, countdown and task progress.</figcaption>
+      <figcaption>Object 3: Key Dates in listing view, with status, countdown and task progress.</figcaption>
     </figure>
   </div>
 
   <div class="wrap" style="margin-top:64px">
     <figure class="float-r">
       <img src="assets/wpm-user-stories.jpg" alt="Table of Key Dates user stories with acceptance criteria and FOC priority, both marked Oxygen" class="shot border">
-      <figcaption>Object 5: Key Dates user stories from one of my PRDs.</figcaption>
+      <figcaption>Object 4: Key Dates user stories from one of my PRDs.</figcaption>
     </figure>
     <p>The epic had just been signed off when the Head of Product, who was also my PM, left. Hiring a replacement took months, and Co-Flo never got there. At the same time, my dev team lead went on a two-week holiday. I was still new, and suddenly the only member of the product trio in the room.</p>
     <p>Most of the decisions behind that epic had lived with the Head of Product, and they left when he did. I went into stakeholder meetings without knowing what had been decided before, and worked it out as I went.</p>
@@ -397,6 +406,11 @@
     </div>
     <p>The hardest conversation was about sequencing. The flashy features everyone wanted were built on foundations nobody found exciting. Either both got built, or both waited. I kept making that case until it stuck.</p>
   </div>
+
+  <figure class="journey">
+    <img src="assets/wpm-journey-map.jpg" alt="Key Dates journey map for an unfair dismissal matter, across eight phases from setting up governance rules to hearing day, with user actions, workspace and system changes, and open questions" class="shot border">
+    <figcaption>Object 5: The end-to-end Key Dates journey I mapped for one matter, from governance rules to hearing day, with the open questions I took to stakeholders.</figcaption>
+  </figure>
 
   <p class="pull">Product design is half product. When product needs someone to step in, a product designer should be ready.</p>
 </section>
@@ -423,6 +437,11 @@
         <p>With several designers writing PRDs, they started to drift in structure and depth. I built a Claude skill that encoded the PRD standard I'd been using. The team adopted it, and first drafts got faster while catching the things PRDs usually miss.</p>
       </div>
     </div>
+
+    <figure class="handover-shot">
+      <img src="assets/wpm-new-task-journey.jpg" alt="Handover board for the add task panel, with every state laid out and developer notes beside each one" class="shot">
+      <figcaption>Object 6: Part of the task creation handover, with every state laid out and notes for developers.</figcaption>
+    </figure>
 
     <div class="funfact">
       <svg class="rosette" viewBox="0 0 120 150" aria-hidden="true">
@@ -454,16 +473,30 @@
       <p>Calendar grids work when dates are spread out. In legal work, deadlines cluster, and a calendar makes you scroll through months to see the next 90 days. A vertical timeline shows it all at once: overdue at the top, upcoming below in order, and the busy weeks obvious at a glance.</p>
       <figure style="margin-top:40px">
         <img src="assets/wpm-calendar.jpg" alt="Calendar view of a month of tasks, with clustered deadlines hidden behind plus-more counters" class="shot border">
-        <figcaption>Object 6: The calendar view. Busy days collapse into "+12".</figcaption>
+        <figcaption>Object 7: The calendar view. Busy days collapse into "+12".</figcaption>
       </figure>
       <div class="verdict-box">
+        <svg class="robot" viewBox="0 0 80 90" aria-hidden="true">
+          <line x1="40" y1="6" x2="40" y2="18" stroke="#000501" stroke-width="2.5"/>
+          <circle cx="40" cy="6" r="4.5" fill="#73AB84" stroke="#000501" stroke-width="2.5"/>
+          <rect x="14" y="18" width="52" height="38" rx="10" fill="#FFFFFC" stroke="#000501" stroke-width="2.5"/>
+          <circle cx="30" cy="36" r="5" fill="#000501"/><circle cx="50" cy="36" r="5" fill="#000501"/>
+          <circle cx="32" cy="34" r="1.6" fill="#fff"/><circle cx="52" cy="34" r="1.6" fill="#fff"/>
+          <path d="M33 46 q7 5 14 0" fill="none" stroke="#000501" stroke-width="2.5" stroke-linecap="round"/>
+          <rect x="8" y="30" width="6" height="12" rx="3" fill="#73AB84" stroke="#000501" stroke-width="2"/>
+          <rect x="66" y="30" width="6" height="12" rx="3" fill="#73AB84" stroke="#000501" stroke-width="2"/>
+          <rect x="22" y="58" width="36" height="24" rx="6" fill="#73AB84" stroke="#000501" stroke-width="2.5"/>
+          <path d="M33 66 l4 4 8-8" fill="none" stroke="#000501" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div>
         <small>Tested before high fidelity</small>
         <p>Before committing to high fidelity, I prototyped the interaction with AI and tested the logic in days rather than weeks. In buy-in sessions, two clients said they preferred the vertical view before I'd explained why.</p>
+        </div>
       </div>
     </div>
     <figure>
       <img src="assets/wpm-timeline.png" alt="Vertical timeline of Key Dates for one matter, with an overdue date above today and upcoming dates below, and a detail panel showing reminders and associated tasks">
-      <figcaption>Object 7: The vertical timeline, with a Key Date's details, reminders and tasks open.</figcaption>
+      <figcaption>Object 8: The vertical timeline, with a Key Date's details, reminders and tasks open.</figcaption>
     </figure>
   </div>
 </section>
@@ -487,6 +520,10 @@
 <section class="container verdict">
   <h2 class="section-h">The Verdict</h2>
   <blockquote>She doesn't just design interfaces, she designs solutions.</blockquote>
+  <div class="quotes">
+    <p>“Every output reflects a clear grasp of the user problem, the business goal or bet behind it &amp; how to balance those into something intuitive, scalable &amp; commercially meaningful.”</p>
+    <p>“Chanel is everything you want in a senior partner, reliable, self-managing, proactive, ambitious &amp; just an all-round pleasure to work with. She […] can be trusted to own her space end-to-end without oversight.”</p>
+  </div>
   <cite><b>Byron McCarthy</b>, Head of Product, Co-Flo</cite>
 </section>
 
