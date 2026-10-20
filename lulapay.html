@@ -80,6 +80,8 @@
 
   /* FRAMES */
   .shot { width: 100%; border-radius: 2px; box-shadow: -16px 16px 0 0 var(--green); background: #fff; }
+  .phone { border: 10px solid var(--black); border-radius: 34px; overflow: hidden; background: #fff; box-shadow: -14px 14px 0 0 var(--green); }
+  .phone img, .phone video { width: 100%; }
   figure { margin: 0; }
   figcaption, .caption { font-size: 13px; color: var(--muted); margin-top: 24px; }
   .pad-l { padding-left: 16px; }
@@ -130,9 +132,17 @@
   .decisions { margin-top: 112px; }
   .reporting { margin-top: 112px; }
   .phones { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; max-width: 900px; margin: 48px auto 0; padding-left: 14px; align-items: start; }
-  .phones img:nth-child(2) { margin-top: 48px; }
-  .phones img:nth-child(3) { margin-top: 96px; }
+  .phones .phone:nth-child(2) { margin-top: 48px; }
+  .phones .phone:nth-child(3) { margin-top: 96px; }
   .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 112px; }
+
+  .slider { margin: 16px 0 18px; }
+  .slider .track { height: 6px; border-radius: 3px; background: linear-gradient(to right, var(--green) 62%, var(--line) 62%); position: relative; }
+  .slider .track::after { content: ''; position: absolute; left: 62%; top: 50%; width: 18px; height: 18px; border-radius: 50%; background: #fff; border: 2px solid var(--black); transform: translate(-50%, -50%); }
+  .slider .ends { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); margin-top: 10px; }
+  .swatches { display: flex; gap: 10px; margin: 16px 0 18px; align-items: center; }
+  .swatches i { width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--black); display: block; }
+  .swatches span { font-size: 20px; }
 
   /* VALIDATION */
   .tiles { display: grid; grid-template-columns: repeat(3, 1fr); border: 2px solid var(--black); border-radius: 2px; background: #fff; margin: 40px 0 48px; box-shadow: -10px 10px 0 0 var(--green); }
@@ -155,8 +165,7 @@
 
   /* DELIVERY */
   .wash { background: var(--navy-tint); padding: 96px 0; margin-bottom: 128px; }
-  .wash video { max-width: 300px; margin: 0 auto; }
-  .wash figure { padding-left: 14px; }
+  .wash .phone { max-width: 300px; margin: 0 auto; }
   .count { display: inline-flex; align-items: baseline; gap: 10px; margin: 6px 0 22px; }
   .count b { font-family: 'Domine', Georgia, serif; font-size: 56px; line-height: 1; color: var(--navy); }
   .count span { font-size: 15px; font-weight: 500; }
@@ -172,13 +181,13 @@
   .closing { font-family: 'Domine', Georgia, serif; font-size: 26px; line-height: 1.4; text-align: center; max-width: 820px; margin: 80px auto 0; }
 
   /* CONTACT (Lulapay version of the cat closer) */
-  .bolt { text-align: center; margin: 0 0 40px; }
+  .bolt { text-align: center; padding: 0 0 48px; }
   .bolt svg { width: 22px; height: 36px; }
-  .closer { display: flex; align-items: center; justify-content: center; gap: 40px; max-width: 900px; margin: 0 auto; padding: 0 20px 96px; }
+  .closer { display: flex; align-items: flex-start; justify-content: center; gap: 40px; max-width: 900px; margin: 0 auto; padding: 0 20px 72px; }
   .closer .cat { flex-shrink: 0; display: block; }
   .closer .cat img { width: 220px; transition: transform .2s; }
   .closer .cat:hover img, .closer .cat:focus-visible img { transform: scale(1.05); }
-  .closer p { font-size: 26px; line-height: 1.4; max-width: 520px; margin: 0; }
+  .closer p { font-size: 26px; line-height: 1.4; max-width: 520px; margin: 0; padding-top: 14px; }
   .closer p a { color: var(--green-text); text-decoration: none; }
   .closer p a:hover { text-decoration: underline; }
   .arr-d { display: none; }
@@ -202,8 +211,8 @@
     .summary dt { padding-bottom: 0; border-top: 1px solid var(--line); }
     .summary dd { border-top: 0; padding-top: 6px; }
     .phones { grid-template-columns: 1fr 1fr; gap: 20px; }
-    .phones img:nth-child(2) { margin-top: 32px; }
-    .phones img:nth-child(3) { display: none; }
+    .phones .phone:nth-child(2) { margin-top: 32px; }
+    .phones .phone:nth-child(3) { display: none; }
     .tiles { grid-template-columns: 1fr; }
     .tile { border-left: 0; border-top: 1px solid var(--line); }
     .tile:first-child { border-top: 0; }
@@ -216,7 +225,7 @@
     .closer { flex-direction: column-reverse; text-align: center; gap: 24px; }
     .arr-l { display: none; }
     .arr-d { display: inline; }
-    .closer p { font-size: 20px; }
+    .closer p { font-size: 20px; padding-top: 0; }
     .paid { position: static; display: inline-block; margin: 0 24px 24px; }
   }
 </style>
@@ -408,9 +417,9 @@
       <p>The business gave me its Excel sheets and little else. I turned them into supplier reporting that can be filtered by 3 months, 6 months, a year or a custom date range, and downloaded. It tracks new customers onboarded, the value of facilities opened and total customer value, each showing its change over the period.</p>
     </div>
     <div class="phones">
-      <img class="shot" src="assets/lulapay-reporting-filter.png" alt="Supplier reporting on mobile with the filter panel open: 3 months, 6 months or annual, plus start and end dates">
-      <img class="shot" src="assets/lulapay-reporting-monthly.png" alt="Supplier reporting for March 2025: disbursements, available facilities, new applicants, value of facilities opened and total customer value, each with its change">
-      <img class="shot" src="assets/lulapay-reporting-12month.png" alt="Supplier reporting over 12 months, with a bar chart of disbursements and a month-by-month list">
+      <div class="phone"><img src="assets/lulapay-reporting-filter.png" alt="Supplier reporting on mobile with the filter panel open: 3 months, 6 months or annual, plus start and end dates"></div>
+      <div class="phone"><img src="assets/lulapay-reporting-monthly.png" alt="Supplier reporting for March 2025: disbursements, available facilities, new applicants, value of facilities opened and total customer value, each with its change"></div>
+      <div class="phone"><img src="assets/lulapay-reporting-12month.png" alt="Supplier reporting over 12 months, with a bar chart of disbursements and a month-by-month list"></div>
     </div>
     <p class="caption" style="text-align:center;margin-top:28px">Object 9: Supplier reporting on mobile, with filters, the monthly view and the 12-month view.</p>
   </div>
@@ -418,10 +427,12 @@
   <div class="duo">
     <div class="card">
       <h3 class="sub">Settle early and save</h3>
+      <div class="slider" aria-hidden="true"><div class="track"></div><div class="ends"><span>Today</span><span>End of term</span></div></div>
       <p>Early settlement suits Lula's business model, and customers with spare cash often didn't know it was an option. A slider showing the exact saving at different points turned a hidden feature into a reason to act.</p>
     </div>
     <div class="card">
       <h3 class="sub">Breaking the design system on purpose</h3>
+      <div class="swatches" aria-hidden="true"><i style="background:#E3EEFB"></i><span>→</span><i style="background:#F2A33A"></i></div>
       <p>I stay close to the design system by default. In testing, users didn't read the notification colours as alerts, so I broke from the system there, documented why, and flagged the component for review.</p>
     </div>
   </div>
@@ -478,7 +489,7 @@
         <p>I drafted them with AI, which took the work from weeks to days while I was running QA, supporting developers and finishing the mobile designs. AI also helped me find patterns across 12 sessions that I might have missed at that volume. This was early days for AI in design work, and it made the difference between handing over a complete product and a half-finished one.</p>
       </div>
       <figure>
-        <video class="shot" src="assets/lulapay-supplier-mobile.mp4" poster="assets/lulapay-supplier-mobile-poster.jpg" autoplay muted loop playsinline aria-label="A supplier creates a payment request on mobile and watches its status change"></video>
+        <div class="phone"><video src="assets/lulapay-supplier-mobile.mp4" poster="assets/lulapay-supplier-mobile-poster.jpg" autoplay muted loop playsinline aria-label="A supplier creates a payment request on mobile and watches its status change"></video></div>
         <figcaption style="text-align:center">Object 12: The supplier portal on mobile.</figcaption>
       </figure>
     </div>
@@ -507,15 +518,15 @@
   <p class="closing">A product that had run on a Google Form for five years now had the foundation to scale.</p>
 </section>
 
-<div class="bolt" aria-hidden="true">
-  <svg viewBox="0 0 22 36"><polygon points="13,0 0,20 9,20 7,36 22,14 13,14 17,0" fill="#73AB84"/></svg>
-</div>
-
 <div class="closer" id="contact">
   <a class="cat" href="mailto:c.carstens21@gmail.com?subject=We%E2%80%99re%20obsessed!!&amp;body=Wow%20Chanel!%20You%20seem%20amazing.%20We%20would%20love%20to%20work%20with%20you!" aria-label="Email Chanél">
     <img src="assets/lulapay-contact-cat.png" alt="My cat standing on her back legs beside a green mail button, with her little sunglasses resting on top of it">
   </a>
   <p>If you have any questions or would like to get in touch, click on the box <span class="arr-l">←</span><span class="arr-d">↓</span> here to <a href="mailto:c.carstens21@gmail.com?subject=We%E2%80%99re%20obsessed!!&amp;body=Wow%20Chanel!%20You%20seem%20amazing.%20We%20would%20love%20to%20work%20with%20you!">contact me</a> or look at some of my <a href="index.html#projects">other projects</a>.</p>
+</div>
+
+<div class="bolt" aria-hidden="true">
+  <svg viewBox="0 0 22 36"><polygon points="13,0 0,20 9,20 7,36 22,14 13,14 17,0" fill="#73AB84"/></svg>
 </div>
 
 <script>
