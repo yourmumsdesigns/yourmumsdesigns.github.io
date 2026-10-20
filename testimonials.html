@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Testimonials · Chanél Carstens, Senior Product Designer</title>
+<meta name="description" content="What the people I've worked with at Co-Flo, Lula, Gumtree and Ozow say about working with me.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Domine:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #73AB84;
+    --green-text: #3E7650;
+    --black: #000501;
+    --bg: #FFFFFC;
+    --muted: #5A5D5A;
+    --line: #DADDD8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-padding-top: 96px; }
+  body { font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.65; color: var(--black); background: var(--bg); }
+  img { max-width: 100%; display: block; }
+  a { color: var(--green-text); }
+
+  /* NAV (matches the case study pages) */
+  .site-head { position: sticky; top: 0; z-index: 50; background: rgba(255,255,252,.94); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid transparent; transition: border-color .2s; }
+  .site-head.scrolled { border-bottom-color: var(--line); }
+  nav.top { display: flex; justify-content: space-between; align-items: center; padding: 24px 48px; max-width: 1240px; margin: 0 auto; }
+  .nav-left { display: flex; align-items: center; gap: 12px; }
+  .back-arrow { text-decoration: none; color: var(--black); font-size: 22px; line-height: 1; }
+  .nav-logo img { height: 44px; width: auto; display: block; }
+  .nav-links { display: flex; gap: 40px; align-items: center; }
+  .nav-links a { text-decoration: none; color: var(--black); }
+  .nav-links a:hover, .back-arrow:hover { color: var(--green-text); }
+  .nav-links a[aria-current="page"] { color: var(--green-text); font-weight: 600; }
+  .external::after { content: ' ↗'; font-size: 13px; }
+
+  /* PAGE */
+  main { max-width: 1180px; margin: 0 auto; padding: 0 48px; }
+  h1 { font-family: 'Domine', Georgia, serif; font-weight: 700; font-size: 40px; line-height: 1.15; letter-spacing: -0.01em; text-align: center; margin: 48px 0 80px; }
+
+  .t-list { display: flex; flex-direction: column; gap: 80px; margin-bottom: 128px; }
+  .t-card { position: relative; background: #fff; box-shadow: -20px 20px 0 var(--green); border-radius: 2px; padding: 36px 48px 40px 32px; display: grid; grid-template-columns: 88px 1fr; column-gap: 16px; margin-left: 20px; }
+  .t-card img.avatar { width: 88px; height: 88px; border-radius: 50%; grid-row: 1 / span 2; }
+  .t-card figcaption { align-self: center; }
+  .t-name { font-weight: 600; font-size: 20px; line-height: 1.3; }
+  .t-role { font-size: 15px; line-height: 1.4; }
+  .t-meta { font-size: 14px; color: var(--muted); line-height: 1.4; margin-top: 2px; }
+  .t-card blockquote { grid-column: 2; margin-top: 20px; font-size: 17px; line-height: 1.6; max-width: 960px; }
+  .t-card blockquote p + p { margin-top: 18px; }
+
+  /* CLOSER (as in Figma: copy above, mail box and cat below) */
+  .closer { text-align: center; padding: 0 20px 72px; }
+  .closer p { font-size: 24px; line-height: 1.4; max-width: 760px; margin: 0 auto 40px; }
+  .closer .cat { display: inline-block; }
+  .closer .cat img { width: 240px; transition: transform .2s; }
+  .closer .cat:hover img, .closer .cat:focus-visible img { transform: scale(1.05) rotate(-2deg); }
+  .bolt { text-align: center; padding: 0 0 48px; }
+  .bolt svg { width: 22px; height: 36px; }
+
+  @media (max-width: 860px) {
+    nav.top { padding: 16px 20px; flex-wrap: wrap; gap: 12px; }
+    .nav-logo img { height: 36px; }
+    .nav-links { gap: 20px; font-size: 14px; }
+    main { padding: 0 20px; }
+    h1 { font-size: 30px; margin: 32px 0 48px; }
+    .t-list { gap: 56px; margin-bottom: 88px; }
+    .t-card { grid-template-columns: 64px 1fr; padding: 24px 20px 28px; box-shadow: -12px 12px 0 var(--green); margin-left: 12px; }
+    .t-card img.avatar { width: 64px; height: 64px; grid-row: auto; }
+    .t-name { font-size: 18px; }
+    .t-card blockquote { grid-column: 1 / -1; font-size: 16px; }
+    .closer p { font-size: 20px; }
+    .closer .cat img { width: 200px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-head">
+<nav class="top">
+  <div class="nav-left">
+    <a href="index.html" class="back-arrow" aria-label="Back to portfolio">←</a>
+    <a href="index.html" class="nav-logo"><img src="assets/testimonials-nav-cat.png" alt="My cat in pixel sunglasses, home"></a>
+  </div>
+  <div class="nav-links">
+    <a href="index.html#projects">Projects</a>
+    <a href="testimonials.html" aria-current="page">Testimonials</a>
+    <a href="#contact">Contact</a>
+    <a href="https://www.linkedin.com/in/chanel-carstens-UX-designer" target="_blank" rel="noopener" class="external">LinkedIn</a>
+  </div>
+</nav>
+</header>
+
+<main>
+<h1>Teamwork Makes The Dream Work</h1>
+
+<div class="t-list">
+
+<figure class="t-card">
+  <img class="avatar" src="assets/testimonials/byron.png" alt="" width="88" height="88">
+  <figcaption>
+    <div class="t-name">Byron McCarthy</div>
+    <div class="t-role">Head Of Product Operations</div>
+    <div class="t-meta">April 23, 2026, Byron managed Chanél directly</div>
+  </figcaption>
+  <blockquote>
+    <p>I had the privilege of working closely with Chanel in the Work Product Management (WPM) value stream at Co-Flo, where she was our sole Senior Product Designer &amp; genuinely one of the strongest designers I’ve worked with.</p>
+    <p>Chanel brings a rare combination of deep user empathy, sharp business understanding &amp; true systems thinking. She doesn’t just design interfaces, she designs solutions. Every output reflects a clear grasp of the user problem, the business goal or bet behind it &amp; how to balance those into something intuitive, scalable &amp; commercially meaningful.</p>
+    <p>During her time with us, Chanel led design across critical initiatives, including full task management &amp; work orchestration features, &amp; played a key role in shaping the Key &amp; Critical Dates framework for a legal WPM product. She didn’t just deliver, she elevated how we worked, defining design standards &amp; processes, strengthening discovery &amp; ideation &amp; actively partnering with Product to improve the product itself &amp; unlock new opportunities.</p>
+    <p>She’s also incredibly fluent in applying AI within design workflows, not as a crutch, but as an accelerator, while maintaining a level of craft, judgment &amp; originality that goes far beyond what AI alone can produce.</p>
+    <p>From a working style perspective, Chanel is everything you want in a senior partner, reliable, self-managing, proactive, ambitious &amp; just an all-round pleasure to work with. She brings great energy into a team, contributes to culture naturally &amp; can be trusted to own her space end-to-end without oversight.</p>
+    <p>Her departure from Co-Flo was purely due to company funding constraints, not performance &amp; losing her was a genuine loss.</p>
+    <p>I’d hire Chanel again in a heartbeat. Any team looking for a high-impact, forward-thinking designer who truly understands the intersection of user, business &amp; modern AI capability will be very lucky to have her.</p>
+  </blockquote>
+</figure>
+
+<figure class="t-card">
+  <img class="avatar" src="assets/testimonials/josh.png" alt="" width="88" height="88">
+  <figcaption>
+    <div class="t-name">Josh Grant</div>
+    <div class="t-role">Product Design Team Lead @ Lula | Fintech | Product Strategy | Driving Innovation &amp; User-Centered Design</div>
+    <div class="t-meta">August 25, 2025, Josh managed Chanél directly</div>
+  </figcaption>
+  <blockquote>
+    <p>Chanél has been a standout member of our UX team at Lula. She consistently brings creativity, attention to detail, and a strong sense of ownership to her work. She’s collaborative, thoughtful in her approach, and has a natural ability to balance user needs with business goals.</p>
+    <p>What stands out most is her willingness to support the team when needed and the calm, professional way she handles challenges. As her manager, I could always trust that Chanel would fully own her projects and see them through with quality and commitment — a quality that makes her an invaluable member of the team.</p>
+    <p>For anyone lucky enough to work with her in the future, two pro tips: put Chanél in charge of design presentations — and make sure there’s good coffee around!</p>
+    <p>Keep being endlessly curious, Chanél.</p>
+  </blockquote>
+</figure>
+
+<figure class="t-card">
+  <img class="avatar" src="assets/testimonials/jordan.png" alt="" width="88" height="88">
+  <figcaption>
+    <div class="t-name">Jordan Gosling</div>
+    <div class="t-role">Fintech | VP | Lulapay</div>
+    <div class="t-meta">August 22, 2025, Jordan managed Chanél directly</div>
+  </figcaption>
+  <blockquote>
+    <p>I had the pleasure of working with Chanél at Lula, where she consistently impressed me with her design expertise, attention to detail, and user-first mindset.</p>
+    <p>Chanél is incredibly hardworking, collaborative, and always brought thoughtful solutions to complex problems. She is a true asset to any team - her sense of humour and dedication to everything she does will be truly missed!</p>
+  </blockquote>
+</figure>
+
+<figure class="t-card">
+  <img class="avatar" src="assets/testimonials/jaco.png" alt="" width="88" height="88">
+  <figcaption>
+    <div class="t-name">Jaco du Plessis</div>
+    <div class="t-role">Lead Product Designer at Gumtree South Africa, an Ignition Group company</div>
+    <div class="t-meta">January 20, 2025, Jaco managed Chanél directly</div>
+  </figcaption>
+  <blockquote>
+    <p>It was a pleasure working alongside Chanél during her time as a Product Designer at Gumtree. Chanél brought an exceptional ability to simplify complex flows and craft intuitive, user-centric experiences that made a significant impact on our product offerings.</p>
+    <p>Her proactive nature and collaborative spirit made her an invaluable team player. Chanél consistently went above and beyond, contributing creative ideas and ensuring the best outcomes for both the business and our users.</p>
+    <p>Beyond her professional skills, Chanél’s sense of humor and light-heartedness brought a unique energy to the team, fostering a positive and engaging work environment that we all cherished.</p>
+    <p>I have no doubt Chanél will continue to excel and bring immense value wherever her journey takes her, and I wholeheartedly recommend her for any future endeavours.</p>
+  </blockquote>
+</figure>
+
+<figure class="t-card">
+  <img class="avatar" src="assets/testimonials/andrea.png" alt="" width="88" height="88">
+  <figcaption>
+    <div class="t-name">Andrea Wilkins</div>
+    <div class="t-role">Senior UX Designer at PlayStation | Turning complex systems into beautiful, intuitive interfaces</div>
+    <div class="t-meta">May 15, 2024, Andrea worked with Chanél on the same team</div>
+  </figcaption>
+  <blockquote>
+    <p>Chanél is a passionate and dedicated designer with so much knowledge about so many different things. She delivers work at a high standard and she's the kind of person who can take on any task, even if it requires figuring things out along the way. She is delightful to work with, always bringing jokes, laughs and fresh perspectives into the room. I loved being on a team with her and cannot stress enough what an asset she is to the design industry.</p>
+  </blockquote>
+</figure>
+
+<figure class="t-card">
+  <img class="avatar" src="assets/testimonials/justin.png" alt="" width="88" height="88">
+  <figcaption>
+    <div class="t-name">Justin Evans</div>
+    <div class="t-role">Fractional Product &amp; Experience Designer<br>UX • Product Strategy • Gamification</div>
+  </figcaption>
+  <blockquote>
+    <p>Chanél is one of those designers that you just imprint on. Not only is she an amazing personality, her work ethic and quality of results makes her a gem in the industry.</p>
+    <p>I have been in the UX industry for nearly 15 years and Chanél has left an impression on me that will forever be the highlight of my career. I saw magic in her and she delivered.</p>
+    <p>Her knowledge of user experience and design is amazing! It feels like she has done this for a very long time. She dives deep into the problem and her research skills is top notch. She has a way of building trust with her so you know that any requests or project is in capable hands.</p>
+    <p>I really loved working with her and really has been a pleasure being her leader at Ozow. She has such a presence and hr work ethic is top notch. Always delivers, on time and with quality. She works so well with a team and makes everyone feel so comfortable. I love the fact that she is always learning and more importantly always eager to learn! I am so proud of the UX &amp; Product Designer she has become!</p>
+    <p>I wish her the best of her bright future! I can tell she was born for this industry and I think she will continue to shine.</p>
+  </blockquote>
+</figure>
+
+<figure class="t-card">
+  <img class="avatar" src="assets/testimonials/maryna.png" alt="" width="88" height="88">
+  <figcaption>
+    <div class="t-name">Maryna Smit</div>
+    <div class="t-role">Senior UX Product Designer (CSPO CSM) 8+ Yrs UX Research &amp; Design Experience</div>
+    <div class="t-meta">May 30, 2023, Maryna worked with Chanél on the same team</div>
+  </figcaption>
+  <blockquote>
+    <p>I had the privilege of working with Chanél in her capacity as UX Designer at Ozow and really enjoyed what she has to offer as a multi-talented Designer. She's always curious and asks questions throughout the design process, which helps her to understand the problem space fully. I've seen her research boards, and she leaves no stone unturned!</p>
+    <p>Once Chanél understands the requirements and user needs, she can create fully functional Figma prototypes. Her level of expertise and passion she shows for this type of work is truly contagious. She's got a real talent for creating Figma components from scratch, and it's amazing to see her in action.</p>
+    <p>Chanél also taught me how to use Autolayout correctly to save time for consistently spacing our layouts. I truly believe that this skill alone is what separates good designers from great ones, and Chanél is an absolute rockstar in this sense! Her work is nothing short of incredible.</p>
+    <p>I'm always excited to see what Chanél does next. She's always willing to help, no matter how big or small the task is. She's efficient and effective and always has a joke to crack in between. Certainly, Chanél's exceptional skills and experience in the full design process make her an invaluable asset to any company fortunate enough to have her on their team.</p>
+  </blockquote>
+</figure>
+
+</div>
+</main>
+
+<div class="closer" id="contact">
+  <p>If you have any questions or would like to know more, hit this big block before my cat takes it away for more QA testing.</p>
+  <a class="cat" href="mailto:c.carstens21@gmail.com?subject=We%E2%80%99re%20obsessed!!&amp;body=Wow%20Chanel!%20You%20seem%20amazing.%20We%20would%20love%20to%20work%20with%20you!" aria-label="Email Chanél">
+    <img src="assets/testimonials-contact-cat.png" alt="My cat beside a green mail button">
+  </a>
+</div>
+
+<div class="bolt" aria-hidden="true">
+  <svg viewBox="0 0 22 36"><polygon points="13,0 0,20 9,20 7,36 22,14 13,14 17,0" fill="#73AB84"/></svg>
+</div>
+
+<script>
+  (function () {
+    var h = document.querySelector('.site-head');
+    function onScroll() { h.classList.toggle('scrolled', window.scrollY > 8); }
+    window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+  })();
+</script>
+</body>
+</html>
