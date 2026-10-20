@@ -28,7 +28,7 @@
     --s-disbursed-bg: #D6EADD;--s-disbursed-fg: #2F6A42;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-padding-top: 150px; }
+  html { scroll-padding-top: 96px; }
   body { font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.65; color: var(--black); background: var(--bg); }
   strong { font-weight: 600; }
   img, video { max-width: 100%; display: block; }
@@ -54,7 +54,7 @@
   h1, h2, .serif { font-family: 'Domine', Georgia, serif; font-weight: 700; letter-spacing: -0.01em; }
   .case-title { text-align: center; font-size: 52px; line-height: 1.12; margin: 56px auto 0; max-width: 900px; }
   .case-title em { font-style: normal; color: var(--green-text); }
-  .case-meta { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 28px; margin: 20px 0 32px; font-size: 14px; color: var(--muted); }
+  .case-meta { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 28px; margin: 20px 0 56px; font-size: 14px; color: var(--muted); }
   .case-meta b { color: var(--black); font-weight: 600; }
   .eyebrow { display: block; font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--green-text); margin-bottom: 12px; }
   p { margin-bottom: 18px; }
@@ -78,23 +78,8 @@
   .status.st-pending::before { animation: blink 1.6s ease-in-out infinite; }
   @keyframes blink { 50% { opacity: .25; } }
 
-  /* TRACKER: the page as an application timeline */
-  .tracker { position: sticky; top: 82px; z-index: 40; background: rgba(255,255,252,.94); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); padding: 10px 0 12px; margin-bottom: 56px; }
-  .tracker ol { list-style: none; display: flex; gap: 8px; justify-content: center; overflow-x: auto; scrollbar-width: none; max-width: 1240px; margin: 0 auto; padding: 0 48px; }
-  .tracker ol::-webkit-scrollbar { display: none; }
-  .tracker a { display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; text-decoration: none; font-size: 13px; font-weight: 600; padding: 5px 12px 6px 10px; border-radius: 999px; background: var(--pill-bg); color: var(--pill-fg); border: 1.5px solid transparent; transition: border-color .15s, transform .15s; }
-  .tracker a::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
-  .tracker a:hover, .tracker a.on { border-color: currentColor; }
-  .tracker a:hover { transform: translateY(-1px); }
-
   /* FRAMES */
   .shot { width: 100%; border-radius: 2px; box-shadow: -16px 16px 0 0 var(--green); background: #fff; }
-  .browser { border: 2px solid var(--black); border-radius: 6px; overflow: hidden; background: #fff; box-shadow: -16px 16px 0 0 var(--green); }
-  .browser .bar { height: 26px; background: var(--navy); display: flex; align-items: center; gap: 6px; padding: 0 10px; }
-  .browser .bar i { width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,.35); }
-  .browser video, .browser img { width: 100%; }
-  .phone { border: 10px solid var(--black); border-radius: 34px; overflow: hidden; background: #fff; box-shadow: -14px 14px 0 0 var(--green); }
-  .phone img, .phone video { width: 100%; }
   figure { margin: 0; }
   figcaption, .caption { font-size: 13px; color: var(--muted); margin-top: 24px; }
   .pad-l { padding-left: 16px; }
@@ -145,16 +130,9 @@
   .decisions { margin-top: 112px; }
   .reporting { margin-top: 112px; }
   .phones { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; max-width: 900px; margin: 48px auto 0; padding-left: 14px; align-items: start; }
-  .phones .phone:nth-child(2) { margin-top: 48px; }
-  .phones .phone:nth-child(3) { margin-top: 96px; }
+  .phones img:nth-child(2) { margin-top: 48px; }
+  .phones img:nth-child(3) { margin-top: 96px; }
   .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 112px; }
-  .slider { margin: 16px 0 18px; }
-  .slider .track { height: 6px; border-radius: 3px; background: linear-gradient(to right, var(--green) 62%, var(--line) 62%); position: relative; }
-  .slider .track::after { content: ''; position: absolute; left: 62%; top: 50%; width: 18px; height: 18px; border-radius: 50%; background: #fff; border: 2px solid var(--black); transform: translate(-50%, -50%); }
-  .slider .ends { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); margin-top: 10px; }
-  .swatches { display: flex; gap: 10px; margin: 16px 0 18px; align-items: center; }
-  .swatches i { width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--black); display: block; }
-  .swatches span { font-size: 20px; }
 
   /* VALIDATION */
   .tiles { display: grid; grid-template-columns: repeat(3, 1fr); border: 2px solid var(--black); border-radius: 2px; background: #fff; margin: 40px 0 48px; box-shadow: -10px 10px 0 0 var(--green); }
@@ -177,7 +155,8 @@
 
   /* DELIVERY */
   .wash { background: var(--navy-tint); padding: 96px 0; margin-bottom: 128px; }
-  .wash .phone { max-width: 300px; margin: 0 auto; }
+  .wash video { max-width: 300px; margin: 0 auto; }
+  .wash figure { padding-left: 14px; }
   .count { display: inline-flex; align-items: baseline; gap: 10px; margin: 6px 0 22px; }
   .count b { font-family: 'Domine', Georgia, serif; font-size: 56px; line-height: 1; color: var(--navy); }
   .count span { font-size: 15px; font-weight: 500; }
@@ -192,21 +171,20 @@
   .paid { position: absolute; right: 22px; bottom: 26px; transform: rotate(-12deg); border: 3px solid var(--green-text); color: var(--green-text); font-weight: 800; font-size: 15px; letter-spacing: 0.14em; text-transform: uppercase; padding: 6px 12px; border-radius: 4px; background: rgba(255,255,252,.85); }
   .closing { font-family: 'Domine', Georgia, serif; font-size: 26px; line-height: 1.4; text-align: center; max-width: 820px; margin: 80px auto 0; }
 
-  /* CONTACT (same as wpm.html) */
+  /* CONTACT (Lulapay version of the cat closer) */
   .bolt { text-align: center; margin: 0 0 40px; }
   .bolt svg { width: 22px; height: 36px; }
-  .closer { text-align: center; padding: 0 20px 96px; }
-  .closer p { font-size: 17px; max-width: 580px; margin: 0 auto 24px; }
-  .closer a { display: inline-block; }
-  .closer img { width: 240px; transition: transform .2s; }
-  .closer a:hover img, .closer a:focus-visible img { transform: scale(1.05); }
+  .closer { display: flex; align-items: center; justify-content: center; gap: 40px; max-width: 900px; margin: 0 auto; padding: 0 20px 96px; }
+  .closer .cat { flex-shrink: 0; display: block; }
+  .closer .cat img { width: 220px; transition: transform .2s; }
+  .closer .cat:hover img, .closer .cat:focus-visible img { transform: scale(1.05); }
+  .closer p { font-size: 26px; line-height: 1.4; max-width: 520px; margin: 0; }
+  .closer p a { color: var(--green-text); text-decoration: none; }
+  .closer p a:hover { text-decoration: underline; }
+  .arr-d { display: none; }
 
   @media (prefers-reduced-motion: reduce) {
     .status.st-pending::before { animation: none; }
-  }
-
-  @media (max-width: 1100px) {
-    .tracker ol { justify-content: flex-start; }
   }
 
   @media (max-width: 860px) {
@@ -217,8 +195,6 @@
     section.container { margin-bottom: 88px; }
     .status { font-size: 22px; padding: 10px 20px 11px 16px; gap: 10px; }
     .status::before { width: 10px; height: 10px; }
-    .tracker { position: relative; top: 0; margin-bottom: 40px; }
-    .tracker ol { padding: 0 20px; }
     .two, .two.lopsided, .two.flip, .who, .quotes, .taped, .duo { grid-template-columns: 1fr; gap: 40px; }
     .two.flip > figure { order: 2; }
     .summary { margin-top: 56px; }
@@ -226,8 +202,8 @@
     .summary dt { padding-bottom: 0; border-top: 1px solid var(--line); }
     .summary dd { border-top: 0; padding-top: 6px; }
     .phones { grid-template-columns: 1fr 1fr; gap: 20px; }
-    .phones .phone:nth-child(2) { margin-top: 32px; }
-    .phones .phone:nth-child(3) { display: none; }
+    .phones img:nth-child(2) { margin-top: 32px; }
+    .phones img:nth-child(3) { display: none; }
     .tiles { grid-template-columns: 1fr; }
     .tile { border-left: 0; border-top: 1px solid var(--line); }
     .tile:first-child { border-top: 0; }
@@ -237,6 +213,10 @@
     .stack .back figure:nth-child(2) { margin-top: 0; }
     .wash { padding: 72px 0; margin-bottom: 88px; }
     .statement li:last-child { padding-right: 0; }
+    .closer { flex-direction: column-reverse; text-align: center; gap: 24px; }
+    .arr-l { display: none; }
+    .arr-d { display: inline; }
+    .closer p { font-size: 20px; }
     .paid { position: static; display: inline-block; margin: 0 24px 24px; }
   }
 </style>
@@ -270,17 +250,6 @@
   </div>
 </div>
 
-<nav class="tracker" aria-label="Case study sections">
-  <ol>
-    <li><a class="st-received" href="#received">Application Received</a></li>
-    <li><a class="st-pending" href="#pending">Pending: More Info Needed</a></li>
-    <li><a class="st-review" href="#review">Under Review</a></li>
-    <li><a class="st-terms" href="#terms">Terms Offered</a></li>
-    <li><a class="st-approved" href="#approved">Approved With Conditions</a></li>
-    <li><a class="st-disbursed" href="#disbursed">Disbursed</a></li>
-    <li><a class="st-settled" href="#settled">Settled Early</a></li>
-  </ol>
-</nav>
 
 <!-- INTRO -->
 <section class="container">
@@ -290,9 +259,7 @@
       <p>For five years, all of it ran on a Google Form, spreadsheets and a very patient support team.</p>
     </div>
     <figure class="pad-l">
-      <div class="browser"><div class="bar"><i></i><i></i><i></i></div>
-        <video src="assets/lulapay-hero.mp4" poster="assets/lulapay-hero-poster.jpg" autoplay muted loop playsinline aria-label="A customer logs in to the Lulapay portal and the guided walkthrough opens on their available facility"></video>
-      </div>
+      <video class="shot" src="assets/lulapay-hero.mp4" poster="assets/lulapay-hero-poster.jpg" autoplay muted loop playsinline aria-label="A customer logs in to the Lulapay portal and the guided walkthrough opens on their available facility"></video>
       <figcaption>Object 1: The customer portal's first login, with the guided walkthrough.</figcaption>
     </figure>
   </div>
@@ -400,18 +367,14 @@
       <p>Suppliers have a short, task-focused job. Adding a customer and sending a payment request are the main actions, so both can be reached from any screen. Suppliers can see each customer's status and available facility before they send a request.</p>
     </div>
     <figure class="pad-l">
-      <div class="browser"><div class="bar"><i></i><i></i><i></i></div>
-        <video src="assets/lulapay-supplier-payment-request.mp4" poster="assets/lulapay-supplier-payment-request-poster.jpg" autoplay muted loop playsinline aria-label="A supplier creates a payment request, checks the summary, sends it and hovers over a status badge to see what each status means"></video>
-      </div>
+      <video class="shot" src="assets/lulapay-supplier-payment-request.mp4" poster="assets/lulapay-supplier-payment-request-poster.jpg" autoplay muted loop playsinline aria-label="A supplier creates a payment request, checks the summary, sends it and hovers over a status badge to see what each status means"></video>
       <figcaption>Object 6: A supplier sends a payment request, then checks what each status means.</figcaption>
     </figure>
   </div>
 
   <div class="two flip center flow">
     <figure class="pad-l">
-      <div class="browser"><div class="bar"><i></i><i></i><i></i></div>
-        <video src="assets/lulapay-customer-invite-supplier.mp4" poster="assets/lulapay-customer-invite-supplier-poster.jpg" autoplay muted loop playsinline aria-label="A customer invites a supplier through a two-step modal and sees a success message"></video>
-      </div>
+      <video class="shot" src="assets/lulapay-customer-invite-supplier.mp4" poster="assets/lulapay-customer-invite-supplier-poster.jpg" autoplay muted loop playsinline aria-label="A customer invites a supplier through a two-step modal and sees a success message"></video>
       <figcaption>Object 7: A customer invites a supplier to Lulapay.</figcaption>
     </figure>
     <div>
@@ -445,9 +408,9 @@
       <p>The business gave me its Excel sheets and little else. I turned them into supplier reporting that can be filtered by 3 months, 6 months, a year or a custom date range, and downloaded. It tracks new customers onboarded, the value of facilities opened and total customer value, each showing its change over the period.</p>
     </div>
     <div class="phones">
-      <div class="phone"><img src="assets/lulapay-reporting-filter.png" alt="Supplier reporting on mobile with the filter panel open: 3 months, 6 months or annual, plus start and end dates"></div>
-      <div class="phone"><img src="assets/lulapay-reporting-monthly.png" alt="Supplier reporting for March 2025: disbursements, available facilities, new applicants, value of facilities opened and total customer value, each with its change"></div>
-      <div class="phone"><img src="assets/lulapay-reporting-12month.png" alt="Supplier reporting over 12 months, with a bar chart of disbursements and a month-by-month list"></div>
+      <img class="shot" src="assets/lulapay-reporting-filter.png" alt="Supplier reporting on mobile with the filter panel open: 3 months, 6 months or annual, plus start and end dates">
+      <img class="shot" src="assets/lulapay-reporting-monthly.png" alt="Supplier reporting for March 2025: disbursements, available facilities, new applicants, value of facilities opened and total customer value, each with its change">
+      <img class="shot" src="assets/lulapay-reporting-12month.png" alt="Supplier reporting over 12 months, with a bar chart of disbursements and a month-by-month list">
     </div>
     <p class="caption" style="text-align:center;margin-top:28px">Object 9: Supplier reporting on mobile, with filters, the monthly view and the 12-month view.</p>
   </div>
@@ -455,12 +418,10 @@
   <div class="duo">
     <div class="card">
       <h3 class="sub">Settle early and save</h3>
-      <div class="slider" aria-hidden="true"><div class="track"></div><div class="ends"><span>Today</span><span>End of term</span></div></div>
       <p>Early settlement suits Lula's business model, and customers with spare cash often didn't know it was an option. A slider showing the exact saving at different points turned a hidden feature into a reason to act.</p>
     </div>
     <div class="card">
       <h3 class="sub">Breaking the design system on purpose</h3>
-      <div class="swatches" aria-hidden="true"><i style="background:#E3EEFB"></i><span>→</span><i style="background:#F2A33A"></i></div>
       <p>I stay close to the design system by default. In testing, users didn't read the notification colours as alerts, so I broke from the system there, documented why, and flagged the component for review.</p>
     </div>
   </div>
@@ -517,7 +478,7 @@
         <p>I drafted them with AI, which took the work from weeks to days while I was running QA, supporting developers and finishing the mobile designs. AI also helped me find patterns across 12 sessions that I might have missed at that volume. This was early days for AI in design work, and it made the difference between handing over a complete product and a half-finished one.</p>
       </div>
       <figure>
-        <div class="phone"><video src="assets/lulapay-supplier-mobile.mp4" poster="assets/lulapay-supplier-mobile-poster.jpg" autoplay muted loop playsinline aria-label="A supplier creates a payment request on mobile and watches its status change"></video></div>
+        <video class="shot" src="assets/lulapay-supplier-mobile.mp4" poster="assets/lulapay-supplier-mobile-poster.jpg" autoplay muted loop playsinline aria-label="A supplier creates a payment request on mobile and watches its status change"></video>
         <figcaption style="text-align:center">Object 12: The supplier portal on mobile.</figcaption>
       </figure>
     </div>
@@ -551,10 +512,10 @@
 </div>
 
 <div class="closer" id="contact">
-  <p>If you have any questions or would like to know more, hit this big block before my cat takes it away for more QA testing.</p>
-  <a href="mailto:c.carstens21@gmail.com?subject=We%E2%80%99re%20obsessed!!&amp;body=Wow%20Chanel!%20You%20seem%20amazing.%20We%20would%20love%20to%20work%20with%20you!" aria-label="Email Chanél">
-    <img src="assets/wpm-contact-cat.png" alt="My cat beside a green mail button, with her little sunglasses resting on top of it">
+  <a class="cat" href="mailto:c.carstens21@gmail.com?subject=We%E2%80%99re%20obsessed!!&amp;body=Wow%20Chanel!%20You%20seem%20amazing.%20We%20would%20love%20to%20work%20with%20you!" aria-label="Email Chanél">
+    <img src="assets/lulapay-contact-cat.png" alt="My cat standing on her back legs beside a green mail button, with her little sunglasses resting on top of it">
   </a>
+  <p>If you have any questions or would like to get in touch, click on the box <span class="arr-l">←</span><span class="arr-d">↓</span> here to <a href="mailto:c.carstens21@gmail.com?subject=We%E2%80%99re%20obsessed!!&amp;body=Wow%20Chanel!%20You%20seem%20amazing.%20We%20would%20love%20to%20work%20with%20you!">contact me</a> or look at some of my <a href="index.html#projects">other projects</a>.</p>
 </div>
 
 <script>
@@ -562,21 +523,6 @@
     var h = document.querySelector('.site-head');
     function onScroll() { h.classList.toggle('scrolled', window.scrollY > 8); }
     window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
-
-    // Highlight the status of the section being read
-    var links = document.querySelectorAll('.tracker a');
-    var map = {};
-    links.forEach(function (a) { map[a.getAttribute('href').slice(1)] = a; });
-    if ('IntersectionObserver' in window) {
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-          if (!e.isIntersecting) return;
-          links.forEach(function (a) { a.classList.remove('on'); });
-          var a = map[e.target.id]; if (a) a.classList.add('on');
-        });
-      }, { rootMargin: '-40% 0px -55% 0px' });
-      Object.keys(map).forEach(function (id) { var s = document.getElementById(id); if (s) io.observe(s); });
-    }
   })();
 </script>
 </body>
