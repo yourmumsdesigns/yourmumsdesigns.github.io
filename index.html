@@ -1,549 +1,298 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chanél Carstens — Senior Product Designer</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <title>Chanél Carstens, Senior Product Designer</title>
+  <meta name="description" content="Senior Product Designer in Cape Town with a fintech background. Case studies from Co-Flo, Lula and Gumtree." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --green: #73AB84;
-      --dark: #000501;
-      --body-bg: #FFFFFC;
-      --text: #000501;
-      --text-muted: #555;
+      --green: #73AB84;        /* accents, shadows, lines */
+      --green-text: #3E7650;   /* any green text (WCAG AA) */
+      --black: #000501;
+      --bg: #FFFFFC;
+      --line: #4A4D4A;
       --font: 'Inter', sans-serif;
     }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; scroll-padding-top: 96px; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
-    body {
-      font-family: var(--font);
-      background: var(--body-bg);
-      color: var(--text);
-      font-size: 15px;
-      line-height: 1.6;
+    body { font-family: var(--font); background: var(--bg); color: var(--black); font-size: 16px; line-height: 1.5; }
+    img, video { display: block; max-width: 100%; height: auto; }
+    strong { font-weight: 600; }
+
+    /* NAV */
+    nav.top { position: sticky; top: 0; z-index: 100; background: rgba(255,255,252,.94); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: space-between; max-width: 1440px; margin: 0 auto; padding: 28px 85px 28px 62px; }
+    .nav-logo svg { width: 34px; height: 40px; display: block; }
+    .nav-links { display: flex; gap: 80px; list-style: none; }
+    .nav-links a { color: var(--black); text-decoration: none; font-size: 24px; font-weight: 400; line-height: 1.2; display: inline-flex; align-items: center; gap: 12px; }
+    .nav-links a:hover { color: var(--green-text); }
+    .nav-links svg { width: 22px; height: 22px; }
+
+    .wrap { max-width: 1275px; margin: 0 auto; padding: 0 24px; }
+
+    /* Text with the green offset echo, as in the Figma */
+    .echo { position: relative; display: inline-block; isolation: isolate; }
+    .echo::before { content: attr(data-echo); position: absolute; left: 2px; top: 2px; color: var(--green); z-index: -1; white-space: nowrap; }
+
+    /* HERO */
+    .hero { display: grid; grid-template-columns: 412px 1fr; gap: 64px; align-items: start; padding: 64px 0 40px 78px; }
+    .hero-photo { width: 412px; }
+    .hero h1 { font-size: 40px; font-weight: 300; line-height: 1.235; margin-bottom: 32px; }
+    .hero p { font-size: 24px; font-weight: 300; line-height: 1.5; max-width: 635px; }
+    .hero .hl { color: var(--green-text); font-weight: 500; }
+    .hero .qa { font-size: 16px; margin-top: 30px; line-height: 1.235; }
+
+    /* SECTION HEADER: line, title, line */
+    .rule-head { display: flex; align-items: center; gap: 12px; margin: 40px 0 44px; }
+    .rule-head::before, .rule-head::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+    .rule-head h2 { font-size: 40px; font-weight: 400; line-height: 1.2; }
+
+    /* PROJECT ROWS: visual left, copy right */
+    .row { display: grid; grid-template-columns: 630px 1fr; gap: 80px; align-items: start; padding: 0 0 0 26px; }
+    .row-copy { max-width: 512px; padding-right: 8px; }
+    .row-copy h3 { font-size: 40px; font-weight: 500; line-height: 1.2; color: var(--green-text); margin-bottom: 16px; }
+    .row-copy .sub { font-style: italic; margin-bottom: 19px; }
+    .row-copy p + p { margin-top: 19px; }
+    .row-copy .more { display: inline-block; margin-top: 19px; color: var(--green-text); text-decoration: underline; text-underline-offset: 3px; }
+    .row-copy .more:hover { text-decoration-thickness: 2px; }
+    .row-copy .soon { margin-top: 19px; color: var(--green-text); }
+
+    /* Visual frames with the -20 20 green shadow */
+    .frame { box-shadow: -20px 20px 0 var(--green); border-radius: 2px; background: #fff; margin-left: 20px; }
+    .frame img, .frame video { width: 100%; border-radius: 2px; }
+    .frame.wide { width: 610px; }
+    .frame.lula { width: 610px; aspect-ratio: 610 / 380; overflow: hidden; }
+    .frame.lula video { height: 100%; object-fit: cover; object-position: top left; }
+
+    /* Scroll inside the frame */
+    .scroller { overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--green) #EEF2EC; }
+    .scroller:focus-visible { outline: 3px solid var(--green-text); outline-offset: 4px; }
+    .frame.gt { width: 610px; height: 446px; }
+
+    .phones { display: flex; gap: 38px; padding-left: 71px; }
+    .phone { width: 220px; height: 446px; }
+    .phone.static img { height: 100%; object-fit: cover; object-position: top; }
+    .frame.lula video { height: 100%; }
+
+    /* Bolt divider */
+    .divider { display: flex; align-items: center; gap: 4px; margin: 44px 37px; }
+    .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+    .divider svg { width: 22px; height: 56px; flex-shrink: 0; }
+
+    /* CONTACT */
+    .contact { padding: 48px 100px 0; max-width: 1440px; margin: 0 auto; }
+    .contact-head { display: flex; align-items: flex-start; margin-bottom: 8px; }
+    .contact-head::before, .contact-head::after { content: ''; flex: 1; height: 1px; background: var(--line); margin-top: 109px; }
+    .contact-art { position: relative; width: 318px; height: 237px; flex-shrink: 0; }
+    .contact-art .cat { position: absolute; left: 0; top: 0; width: 207px; }
+    .contact-art h2 { position: absolute; left: 140px; top: 85px; font-size: 40px; font-weight: 400; line-height: 48px; }
+    .contact-art .glasses { position: absolute; left: 170px; top: 112px; width: 33px; }
+    .contact-links { display: flex; flex-direction: column; gap: 20px; width: max-content; margin: 0 auto; }
+    .contact-link { display: flex; align-items: center; gap: 40px; color: var(--green-text); text-decoration: none; font-size: 24px; }
+    .contact-link:hover { text-decoration: underline; text-underline-offset: 4px; }
+    .contact-icon { width: 100px; height: 100px; border: 4px solid var(--green); border-radius: 20px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background .2s; }
+    .contact-link:hover .contact-icon { background: rgba(115,171,132,.25); }
+    .contact-icon svg { width: 52px; height: 52px; }
+    .footer-bolt { display: flex; justify-content: center; padding: 53px 0 40px; }
+    .footer-bolt svg { width: 50px; height: 58px; }
+
+    /* Narrower desktops */
+    @media (max-width: 1240px) {
+      nav.top { padding: 24px 32px; }
+      .nav-links { gap: 48px; }
+      .nav-links a { font-size: 20px; }
+      .hero { grid-template-columns: 340px 1fr; gap: 48px; padding-left: 0; }
+      .hero-photo { width: 340px; }
+      .row { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; padding: 0; }
+      .frame.wide, .frame.lula, .frame.gt { width: auto; }
+      .frame.gt { height: auto; aspect-ratio: 610 / 446; }
+      .phones { padding-left: 20px; gap: 32px; }
+      .phone { width: auto; flex: 1; height: auto; aspect-ratio: 220 / 446; }
+      .contact { padding: 48px 24px 0; }
     }
 
-    /* ── NAV ── */
-    nav {
-      background: var(--body-bg);
-      padding: 0 48px;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    .nav-logo { display: flex; align-items: center; }
-
-    .nav-links {
-      display: flex;
-      gap: 36px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: var(--dark);
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 400;
-      opacity: 0.85;
-      transition: opacity 0.2s;
-    }
-
-    .nav-links a:hover { opacity: 1; }
-
-    .nav-links .linkedin-link {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    .nav-links .linkedin-link svg {
-      width: 12px;
-      height: 12px;
-      opacity: 0.7;
-    }
-
-    /* ── HERO ── */
-    .hero {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 80px 48px 60px;
-      display: grid;
-      grid-template-columns: 420px 1fr;
-      gap: 48px;
-      align-items: start;
-    }
-
-    .hero-photo {
-      max-width: 400px;
-      width: 100%;
-      display: block;
-    }
-
-    .hero-text h1 {
-      font-size: 32px;
-      font-weight: 700;
-      margin-bottom: 16px;
-      letter-spacing: -0.5px;
-    }
-
-    .hero-text p {
-      font-size: 15px;
-      color: var(--text-muted);
-      margin-bottom: 12px;
-      max-width: 480px;
-    }
-
-    .hero-text .highlight {
-      color: var(--green);
-      font-weight: 600;
-    }
-
-    .hero-cat {
-      font-size: 13px;
-      color: #999;
-      margin-top: 8px;
-      font-style: italic;
-    }
-
-    /* ── DIVIDER ── */
-    .bolt-divider {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 12px 0;
-    }
-
-    .bolt-divider::before,
-    .bolt-divider::after {
-      content: '';
-      flex: 1;
-      max-width: 340px;
-      height: 1px;
-      background: #e0e0dc;
-      margin: 0 16px;
-    }
-
-    .bolt-divider svg { flex-shrink: 0; color: var(--green); }
-
-    /* ── PROJECTS ── */
-    .projects-section {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 0 48px 80px;
-    }
-
-    .projects-heading {
-      text-align: center;
-      font-size: 22px;
-      font-weight: 700;
-      letter-spacing: -0.3px;
-      margin-bottom: 48px;
-      scroll-margin-top: 72px;
-    }
-
-    .project-card {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 56px;
-      align-items: center;
-      margin-bottom: 64px;
-    }
-
-    .project-card.wide-img {
-      grid-template-columns: 58% 42%;
-    }
-
-    .project-card.reverse { direction: rtl; }
-    .project-card.reverse > * { direction: ltr; }
-
-    .img-wrap {
-      padding: 0 0 20px 20px;
-    }
-
-    .gumtree-scroll-wrap {
-      aspect-ratio: 610 / 446;
-      overflow-y: auto;
-      border-radius: 2px;
-      box-shadow: -16px 16px 0 0 #73AB84;
-      scrollbar-width: thin;
-      scrollbar-color: #73AB84 #f0f0ec;
-    }
-
-    .project-image {
-      width: 100%;
-      display: block;
-      border-radius: 2px;
-      box-shadow: -16px 16px 0 0 var(--green);
-    }
-
-    .project-label {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
-      color: var(--green);
-      margin-bottom: 8px;
-    }
-
-    .project-content h2 {
-      font-size: 22px;
-      font-weight: 700;
-      letter-spacing: -0.3px;
-      margin-bottom: 12px;
-      line-height: 1.25;
-    }
-
-    .project-content p {
-      font-size: 14px;
-      color: var(--text-muted);
-      margin-bottom: 8px;
-      line-height: 1.65;
-    }
-
-    .project-content p strong {
-      color: var(--text);
-      font-weight: 600;
-    }
-
-    .project-content .note {
-      font-size: 13px;
-      color: #aaa;
-      font-style: italic;
-      margin-top: 4px;
-    }
-
-    .project-content .coming-soon {
-      font-size: 13px;
-      color: var(--green);
-      font-weight: 500;
-      margin-top: 8px;
-    }
-
-    .see-more {
-      display: inline-block;
-      margin-top: 16px;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--green);
-      text-decoration: none;
-      letter-spacing: 0.2px;
-      transition: opacity 0.2s;
-    }
-
-    .see-more:hover { opacity: 0.7; }
-
-    /* ── CONTACT ── */
-    .contact-section {
-      background: var(--body-bg);
-      padding: 48px 32px 80px;
-      text-align: center;
-    }
-
-    .contact-heading-wrap {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 40px;
-      gap: 0;
-    }
-
-    .contact-cat-img {
-      height: 108px;
-      display: block;
-      flex-shrink: 0;
-      margin-right: -8px;
-    }
-
-    .contact-title {
-      font-size: 28px;
-      font-weight: 700;
-      letter-spacing: -0.3px;
-      display: inline-flex;
-      align-items: center;
-      line-height: 1;
-    }
-
-    .contact-c-wrap {
-      position: relative;
-      display: inline-block;
-    }
-
-    .contact-glasses {
-      position: absolute;
-      bottom: -10px;
-      left: 1px;
-      height: 28px;
-    }
-
-    .contact-links {
-      display: inline-flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 16px;
-    }
-
-    .contact-link {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      text-decoration: none;
-      color: var(--text-muted);
-      font-size: 14px;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-
-    .contact-link:hover { color: var(--green); }
-
-    .contact-icon {
-      width: 52px;
-      height: 52px;
-      border-radius: 12px;
-      border: 1.5px solid var(--green);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      transition: background 0.2s;
-    }
-
-    .contact-link:hover .contact-icon {
-      background: rgba(115, 171, 132, 0.3);
-    }
-
-    /* ── FOOTER BOLT ── */
-    .footer-bolt {
-      display: flex;
-      justify-content: center;
-      padding: 24px 0 32px;
-      color: var(--green);
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 700px) {
-      nav { padding: 0 20px; }
-      .nav-links { gap: 20px; }
-      .hero { grid-template-columns: 1fr; gap: 28px; padding: 48px 20px 40px; }
-      .hero-photo { max-width: 280px; }
-      .project-card { grid-template-columns: 1fr; gap: 24px; }
-      .project-card.reverse { direction: ltr; }
-      .projects-section { padding: 0 20px 60px; }
-      .img-wrap { padding: 0 0 16px 16px; }
+    /* Mobile */
+    @media (max-width: 760px) {
+      nav.top { padding: 16px 20px; gap: 16px; }
+      .nav-logo svg { width: 24px; height: 28px; }
+      .nav-links { gap: 16px; }
+      .nav-links a { font-size: 14px; gap: 4px; }
+      .nav-links svg { width: 14px; height: 14px; }
+      .wrap { padding: 0 20px; }
+      .hero { grid-template-columns: 1fr; gap: 24px; padding: 24px 0 8px; }
+      .hero-photo { width: 260px; margin: 0 auto; }
+      .hero h1 { font-size: 32px; margin-bottom: 20px; }
+      .hero p { font-size: 18px; }
+      .rule-head h2 { font-size: 30px; }
+      .row { grid-template-columns: 1fr; gap: 36px; }
+      .row-copy h3 { font-size: 30px; }
+      .phones { padding-left: 12px; gap: 28px; }
+      .frame { margin-left: 14px; box-shadow: -14px 14px 0 var(--green); }
+      .divider { margin: 40px 0; }
+      .contact { padding: 40px 20px 0; }
+      .contact-art { width: 256px; height: 190px; }
+      .contact-art .cat { width: 166px; }
+      .contact-art h2 { left: 112px; top: 68px; font-size: 32px; line-height: 38px; }
+      .contact-art .glasses { left: 136px; top: 90px; width: 26px; }
+      .contact-head::before, .contact-head::after { margin-top: 87px; }
+      .contact-links { width: auto; }
+      .contact-link { gap: 16px; font-size: 15px; overflow-wrap: anywhere; }
+      .contact-icon { width: 60px; height: 60px; border-width: 3px; border-radius: 14px; }
+      .contact-icon svg { width: 30px; height: 30px; }
+      .footer-bolt svg { width: 36px; height: 42px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <a class="nav-logo" href="index.html">
-      <svg width="22" height="32" viewBox="0 0 22 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M13 0L0 18H9L9 32L22 14H13L13 0Z" fill="#73AB84"/>
-      </svg>
+  <nav class="top" aria-label="Main">
+    <a class="nav-logo" href="index.html" aria-label="Home">
+      <svg viewBox="0 0 22 32" fill="none" aria-hidden="true"><path d="M13 0L0 18H9L9 32L22 14H13L13 0Z" fill="#73AB84"/></svg>
     </a>
     <ul class="nav-links">
       <li><a href="#projects">Projects</a></li>
       <li><a href="testimonials.html">Testimonials</a></li>
       <li><a href="#contact">Contact</a></li>
       <li>
-        <a href="https://www.linkedin.com/in/chanel-carstens-UX-designer" target="_blank" class="linkedin-link">
+        <a href="https://www.linkedin.com/in/chanel-carstens-UX-designer" target="_blank" rel="noopener">
           LinkedIn
-          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M2 10L10 2M10 2H4M10 2V8"/>
-          </svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5"/></svg>
         </a>
       </li>
     </ul>
   </nav>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div>
-      <img class="hero-photo" src="assets/chanel-photo.png" alt="Chanél Carstens" />
-    </div>
-    <div class="hero-text">
-      <h1>Hi, I'm Chanél</h1>
-      <p>
-        I'm a Senior Product Designer with a strong background in FinTech. I like building things that actually make sense to the people using them, which means I spend a lot of time on hands-on research before I open Figma.
-      </p>
-      <p>
-        I care about <span class="highlight">outcomes more than outputs</span>. Good design isn't just what it looks like, it's whether it solved the right problem.
-      </p>
-      <p class="hero-cat">All designs have been reviewed for QA by my cat...</p>
-    </div>
-  </section>
+  <main class="wrap">
 
-  <!-- DIVIDER -->
-  <div class="bolt-divider">
-    <svg width="18" height="26" viewBox="0 0 18 26" fill="currentColor"><path d="M10 0L0 15H7L7 26L18 11H11L10 0Z"/></svg>
-  </div>
+    <!-- HERO -->
+    <section class="hero">
+      <img class="hero-photo" src="assets/chanel-photo.png" alt="Chanél in pixel sunglasses, with her cat in matching ones" />
+      <div>
+        <h1><span class="echo" data-echo="Hi, I’m Chanél">Hi, I’m Chanél</span></h1>
+        <p>I'm a Senior Product Designer with a strong background in FinTech. I like building things that actually make sense to the people using them, which means I spend a lot of time on hands-on research before I open Figma.</p>
+        <p>I care about <span class="hl">outcomes more than outputs</span>. Good design isn't just what it looks like, it's whether it solved the right problem.</p>
+        <p class="qa">All designs have been reviewed for QA by my cat...</p>
+      </div>
+    </section>
 
-  <!-- PROJECTS -->
-  <section class="projects-section" id="projects" style="scroll-margin-top: 60px;">
-    <h2 class="projects-heading">Projects</h2>
+    <div class="rule-head" id="projects">
+      <h2><span class="echo" data-echo="Projects">Projects</span></h2>
+    </div>
 
     <!-- WPM -->
-    <div class="project-card wide-img">
-      <div class="img-wrap">
-        <img class="project-image" src="assets/create-task-preview.gif" alt="Work Product Management" />
+    <article class="row">
+      <div class="frame wide">
+        <img src="assets/wpm-home.jpg" width="1220" height="854" alt="Co-Flo Tasks listing with the new Add task side panel open" />
       </div>
-      <div class="project-content">
-        <div class="project-label">B2B SaaS</div>
-        <h2>Work Product Management</h2>
+      <div class="row-copy">
+        <h3>Work Product Management</h3>
         <p>What started as a facelift became something much bigger.</p>
-        <p>
-          I joined the Tasks project to refresh the UI, but after doing my own research using Co-Flo's own tools and speaking directly to customers, the findings pushed us toward a fuller rethink — including new functionality that hadn't been on the original roadmap.
-        </p>
-        <p>
-          I was the sole Senior Product Designer across two connected workstreams, Tasks and Key Dates, designing for both the admin and end-user sides of the product. Key Dates arrived as a single epic doc. Everything else was mine: stakeholder management, prioritisation, PRDs, designs, dev tickets, and QA.
-        </p>
-        <p>
-          The most interesting design challenge: users asked for a calendar view. When we actually spoke to them, a timeline made more sense. <strong>Research changed the answer.</strong>
-        </p>
-        <a class="see-more" href="wpm.html">See more &rsaquo;&rsaquo;</a>
+        <p>I joined the Tasks project to refresh the UI, but after doing my own research using Co-Flo's analytics tools, the findings pushed us toward a fuller rethink, including new functionality that hadn't been on the original roadmap.</p>
+        <p>I was the sole Senior Product Designer across two connected workstreams, Tasks and Key Dates, designing for both the admin and end-user sides of the product. Key Dates arrived as a single epic doc. Everything else was mine: stakeholder management, prioritisation, PRDs, designs, dev tickets, and QA.</p>
+        <p>The most interesting design challenge: users asked for a calendar view. When we actually spoke to them, a timeline made more sense. <strong>Research changed the answer</strong>.</p>
+        <a class="more" href="wpm.html">See more &gt;&gt;</a>
       </div>
-    </div>
+    </article>
 
-    <div class="bolt-divider">
-      <svg width="18" height="26" viewBox="0 0 18 26" fill="currentColor"><path d="M10 0L0 15H7L7 26L18 11H11L10 0Z"/></svg>
-    </div>
+    <div class="divider" aria-hidden="true"><svg viewBox="0 0 22 56"><path d="M14 0L1 33H10L8 56L21 22H12L14 0Z" fill="#73AB84"/></svg></div>
 
     <!-- LULAPAY -->
-    <div class="project-card reverse">
-      <div class="img-wrap">
-        <img class="project-image" src="assets/lulapay-previewgif.gif" alt="Lulapay B2B BNPL" />
+    <article class="row">
+      <div class="frame lula">
+        <video src="assets/lulapay-home.mp4" poster="assets/lulapay-home-poster.jpg" autoplay muted loop playsinline aria-label="Screen recording of the Lulapay customer portal: facility balance, repayment progress and payment requests"></video>
       </div>
-      <div class="project-content">
-        <div class="project-label">B2B BNPL</div>
-        <h2>Lulapay</h2>
-        <p>
-          What started as a Google Form and a shared inbox became a full self-service platform for buyers and suppliers. Over <strong>five years of real user feedback shaped the design</strong> and I led the build from first prototype to launch.
-        </p>
-        <p class="note">Some details have been omitted as this product hasn't launched publicly.</p>
-        <a class="see-more" href="lulapay.html">See more &rsaquo;&rsaquo;</a>
+      <div class="row-copy">
+        <h3>B2B BNPL</h3>
+        <p>What started as a Google Form and a shared inbox became a full self-service platform for buyers and suppliers. Over <strong>five years of real user feedback shaped the design</strong> and I led the design from first prototype to dev handover.</p>
+        <a class="more" href="lulapay.html">See more &gt;&gt;</a>
       </div>
-    </div>
+    </article>
 
-    <div class="bolt-divider">
-      <svg width="18" height="26" viewBox="0 0 18 26" fill="currentColor"><path d="M10 0L0 15H7L7 26L18 11H11L10 0Z"/></svg>
-    </div>
+    <div class="divider" aria-hidden="true"><svg viewBox="0 0 22 56"><path d="M14 0L1 33H10L8 56L21 22H12L14 0Z" fill="#73AB84"/></svg></div>
 
     <!-- SAFEDEAL -->
-    <div class="project-card">
-      <div class="img-wrap">
-        <div style="display: flex; gap: 32px; align-items: flex-start;">
-          <img id="safedeal-static" src="assets/safedeal-preview.png" alt="SafeDeal confirmation screen"
-            style="width: calc(50% - 16px); border-radius: 2px; display: block; flex-shrink: 0; box-shadow: -16px 16px 0 0 #73AB84;">
-          <div id="safedeal-scroll"
-            style="width: calc(50% - 16px); flex-shrink: 0; overflow-y: auto; border-radius: 2px; box-shadow: -16px 16px 0 0 #73AB84; scrollbar-width: thin; scrollbar-color: #73AB84 #f0f0ec;">
-            <img src="assets/safedeal-scroll-mobile.png" alt="SafeDeal listing view" style="width: 100%; display: block; border-radius: 2px;">
-          </div>
+    <article class="row">
+      <div class="phones">
+        <div class="frame phone static">
+          <img src="assets/safedeal-success-home.png" width="441" height="892" alt="SafeDeal purchase confirmation screen" />
+        </div>
+        <div class="frame phone scroller" id="sd-scroll" tabindex="0" role="region" aria-label="Gumtree ad page with Pay &amp; Ship. Scroll inside to see the whole page">
+          <img src="assets/safedeal-scroll-mobile.png" width="461" height="4642" alt="Full Gumtree ad page showing Buy now, Make an offer and the buyer protection section" />
         </div>
       </div>
-      <div class="project-content">
-        <div class="project-label">SafeDeal by Gumtree</div>
-        <h2>Pay & Ship</h2>
-        <p>
-          Gumtree is one of the most visited sites in South Africa. This project turned it from a listings platform into a place where people could actually buy and sell with confidence. Think South Africa's answer to eBay, but for secondhand goods.
-        </p>
-        <p>
-          I joined mid-project specifically for my fintech background. My job wasn't just designing the checkout flow — it was figuring out <strong>what a payment experience could look like for every South African</strong>, on any device, trusting a stranger with their money for the first time.
-        </p>
-        <p>
-          I worked with TradeSafe as the third-party payment processor and designed the full returns and dispute process from scratch.
-        </p>
-        <p>It launched the week after I left. I've used it myself. Would recommend.</p>
-        <a class="see-more" href="safedeal.html">See more &rsaquo;&rsaquo;</a>
+      <div class="row-copy">
+        <h3>SafeDeal by Gumtree</h3>
+        <p class="sub">Launched as Pay &amp; Ship</p>
+        <p>Gumtree is one of the most visited sites in South Africa. This project turned it from a listings platform into a place where people could actually buy and sell with confidence. Think South Africa's answer to eBay, but for secondhand goods.</p>
+        <p>I joined mid-project specifically for my fintech background. My job wasn't just designing the checkout flow, it was figuring out <strong>what a payment experience could look like for every South African</strong>, on any device, trusting a stranger with their money for the first time. I worked with TradeSafe as the third-party payment processor and designed the full returns and dispute process from scratch.</p>
+        <p>I've used it myself. Would recommend.</p>
+        <a class="more" href="safedeal.html">See more &gt;&gt;</a>
       </div>
-    </div>
+    </article>
 
-    <div class="bolt-divider">
-      <svg width="18" height="26" viewBox="0 0 18 26" fill="currentColor"><path d="M10 0L0 15H7L7 26L18 11H11L10 0Z"/></svg>
-    </div>
+    <div class="divider" aria-hidden="true"><svg viewBox="0 0 22 56"><path d="M14 0L1 33H10L8 56L21 22H12L14 0Z" fill="#73AB84"/></svg></div>
 
     <!-- GUMTREE STORES -->
-    <div class="project-card reverse">
-      <div class="img-wrap">
-        <div class="gumtree-scroll-wrap">
-          <img src="assets/gumtree-dashboard-full.png" alt="Gumtree Stores and Dashboards" style="width: 100%; display: block; border-radius: 2px;">
-        </div>
+    <article class="row">
+      <div class="frame gt scroller" tabindex="0" role="region" aria-label="Gumtree Stores Insights dashboard. Scroll inside to see the whole dashboard">
+        <img src="assets/gumtree-dashboard-full.png" width="610" height="1995" alt="Gumtree Stores Insights dashboard with sales chart, leads, views, listings and conversion rate" />
       </div>
-      <div class="project-content">
-        <div class="project-label">Gumtree</div>
-        <h2>Stores & Dashboards</h2>
-        <p>
-          A seller dashboard for one of South Africa's most visited sites, designed to be valuable enough that people would actually pay for it.
-        </p>
-        <p>
-          The constraint was real: dev could only surface specific data points. No custom metrics, no wish list. Just what existed. My job was to take those fixed inputs and design a dashboard that felt <strong>indispensable to a seller running their business, whether they were on a laptop or a low-res phone.</strong>
-        </p>
-        <p>
-          The added complexity: commercial, product, and dev all had different visions for what this should be. Navigating that, while keeping the user's needs as the anchor, was as much a part of the design challenge as the screens themselves.
-        </p>
-        <p class="coming-soon">Case study in progress</p>
+      <div class="row-copy">
+        <h3>Gumtree Stores and Dashboards</h3>
+        <p>A seller dashboard for one of South Africa's most visited sites, designed to be valuable enough that people would actually pay for it.</p>
+        <p>The constraint was real: dev could only surface specific data points, so there was no room for custom metrics. My job was to take those fixed inputs and design a dashboard that felt <strong>indispensable to a seller running their business, whether they were on a laptop or a low-res phone</strong>.</p>
+        <p>The added complexity: commercial, product, and dev all had different visions for what this should be. Navigating that, while keeping the user's needs as the anchor, was as much a part of the design challenge as the screens themselves.</p>
+        <p class="soon">Case study coming soon</p>
       </div>
-    </div>
+    </article>
 
-  </section>
+  </main>
 
   <!-- CONTACT -->
-  <div class="bolt-divider">
-    <svg width="18" height="26" viewBox="0 0 18 26" fill="currentColor"><path d="M10 0L0 15H7L7 26L18 11H11L10 0Z"/></svg>
-  </div>
-
-  <section class="contact-section" id="contact">
-    <div class="contact-heading-wrap">
-      <img src="assets/cat-contact.png" alt="" class="contact-cat-img">
-      <div class="contact-title">
-        <div class="contact-c-wrap">
-          C<img src="assets/contact-cat-glasses.png" alt="" class="contact-glasses">
-        </div>ontact
+  <section class="contact" id="contact">
+    <div class="contact-head">
+      <div class="contact-art">
+        <img class="cat" src="assets/cat-contact.png" alt="" />
+        <h2>Contact</h2>
+        <img class="glasses" src="assets/contact-cat-glasses.png" alt="" />
       </div>
     </div>
     <div class="contact-links">
-      <a class="contact-link" href="https://www.linkedin.com/in/chanel-carstens-UX-designer" target="_blank">
-        <div class="contact-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000501" stroke-width="1.8">
-            <rect x="2" y="2" width="20" height="20" rx="4"/>
-            <path d="M7 10v7M7 7v.01M12 10v7M12 13a3 3 0 016 0v4"/>
-          </svg>
-        </div>
+      <a class="contact-link" href="https://www.linkedin.com/in/chanel-carstens-UX-designer" target="_blank" rel="noopener">
+        <span class="contact-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#000501" stroke-width="2" stroke-linecap="round"><path d="M6 10v8M6 6v.01M11 18v-8M11 13.5a3.5 3.5 0 017 0V18"/></svg>
+        </span>
         www.linkedin.com/in/chanel-carstens-UX-designer
       </a>
-      <a class="contact-link" href="mailto:c.carstens21@gmail.com">
-        <div class="contact-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000501" stroke-width="1.8">
-            <rect x="2" y="4" width="20" height="16" rx="2"/>
-            <path d="M2 7l10 7 10-7"/>
-          </svg>
-        </div>
+      <a class="contact-link" href="mailto:c.carstens21@gmail.com?subject=We%E2%80%99re%20obsessed!!&amp;body=Wow%20Chanel!%20You%20seem%20amazing.%20We%20would%20love%20to%20work%20with%20you!">
+        <span class="contact-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#000501" stroke-width="2" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/></svg>
+        </span>
         c.carstens21@gmail.com
       </a>
     </div>
   </section>
 
-  <div class="footer-bolt">
-    <svg width="18" height="26" viewBox="0 0 18 26" fill="currentColor"><path d="M10 0L0 15H7L7 26L18 11H11L10 0Z"/></svg>
+  <div class="footer-bolt" aria-hidden="true">
+    <svg viewBox="0 0 22 32"><path d="M13 0L0 18H9L9 32L22 14H13L13 0Z" fill="#73AB84"/></svg>
   </div>
 
   <script>
-    window.addEventListener('load', function() {
-      var staticImg = document.getElementById('safedeal-static');
-      var safedealScroll = document.getElementById('safedeal-scroll');
-      if (staticImg && safedealScroll) {
-        safedealScroll.style.height = staticImg.offsetHeight + 'px';
-      }
-    });
+    // Start the ad page scrolled to the listing details, as in the Figma
+    (function () {
+      var el = document.getElementById('sd-scroll');
+      if (!el) return;
+      function start() { el.scrollTop = Math.round(el.clientWidth * 1.4); }
+      var img = el.querySelector('img');
+      if (img.complete) start(); else img.addEventListener('load', start);
+    })();
   </script>
-
 </body>
 </html>
