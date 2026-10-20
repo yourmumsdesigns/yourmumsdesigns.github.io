@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SafeDeal · Chanél Carstens, Senior Product Designer</title>
+<meta name="description" content="How I designed the buyer journey for SafeDeal, now Pay &amp; Ship, so people could buy secondhand on Gumtree without meeting a stranger with a wad of cash.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Domine:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #73AB84;
+    --green-text: #3E7650;
+    --green-tint: #EEF5F0;
+    --sd-blue: #1D6491;
+    --sd-blue-tint: #E7F2F9;
+    --gt-green: #5CBF1E;
+    --black: #000501;
+    --bg: #FFFFFC;
+    --muted: #4A4A4A;
+    --line: #DADDD8;
+    --bubble-in: #EDEFEC;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-padding-top: 96px; }
+  body { font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.65; color: var(--black); background: var(--bg); }
+  strong { font-weight: 600; }
+  img { max-width: 100%; display: block; }
+  a { color: var(--green-text); }
+
+  /* NAV (matches wpm.html and lulapay.html) */
+  .site-head { position: sticky; top: 0; z-index: 50; background: rgba(255,255,252,.94); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid transparent; transition: border-color .2s; }
+  .site-head.scrolled { border-bottom-color: var(--line); }
+  nav.top { display: flex; justify-content: space-between; align-items: center; padding: 24px 48px; max-width: 1240px; margin: 0 auto; }
+  .nav-left { display: flex; align-items: center; gap: 16px; }
+  .back-arrow { text-decoration: none; color: var(--black); font-size: 22px; line-height: 1; }
+  .nav-logo img { height: 30px; width: auto; display: block; }
+  .nav-links { display: flex; gap: 40px; align-items: center; }
+  .nav-links a { text-decoration: none; color: var(--black); }
+  .nav-links a:hover, .back-arrow:hover { color: var(--green-text); }
+  .external::after { content: ' ↗'; font-size: 13px; }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 48px; }
+  .measure { max-width: 680px; }
+  section.container { margin-bottom: 128px; }
+
+  /* TYPE */
+  h1, h2, .serif { font-family: 'Domine', Georgia, serif; font-weight: 700; letter-spacing: -0.01em; }
+  .case-title { text-align: center; font-size: 52px; line-height: 1.12; margin: 56px auto 0; max-width: 900px; }
+  .case-title em { font-style: normal; color: var(--sd-blue); }
+  .case-meta { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 28px; margin: 20px 0 64px; font-size: 14px; color: var(--muted); }
+  .case-meta b { color: var(--black); font-weight: 600; }
+  .eyebrow { display: block; font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--green-text); margin-bottom: 14px; }
+  p { margin-bottom: 18px; }
+  .lead { font-size: 18px; }
+  h3.sub { font-size: 20px; font-weight: 600; line-height: 1.3; margin-bottom: 10px; }
+  ul.facts { padding-left: 22px; margin: 4px 0 20px; }
+  ul.facts li { margin-bottom: 10px; }
+  ul.facts li::marker { color: var(--green); }
+
+  /* CHAT BUBBLE HEADERS: the old way of buying secondhand, one message at a time */
+  .msg { display: inline-block; position: relative; font-size: 30px; line-height: 1.2; padding: 14px 26px 16px; border-radius: 26px 26px 26px 6px; background: var(--bubble-in); color: var(--black); margin-bottom: 10px; max-width: 100%; }
+  .msg.out { background: var(--sd-blue); color: #fff; border-radius: 26px 26px 6px 26px; }
+  .msg.done { background: var(--green); color: var(--black); border-radius: 26px 26px 6px 26px; }
+  .msg-meta { display: block; font-size: 12px; color: var(--muted); margin: 0 0 28px 8px; }
+  .msg-meta .ticks { color: var(--sd-blue); font-weight: 700; letter-spacing: -2px; margin-left: 4px; }
+  .typing { display: inline-flex; gap: 5px; padding: 12px 16px; border-radius: 18px 18px 18px 6px; background: var(--bubble-in); margin-bottom: 12px; }
+  .typing i { width: 7px; height: 7px; border-radius: 50%; background: #8A8F88; animation: dot 1.2s infinite ease-in-out; }
+  .typing i:nth-child(2) { animation-delay: .15s; }
+  .typing i:nth-child(3) { animation-delay: .3s; }
+  @keyframes dot { 0%, 60%, 100% { transform: translateY(0); opacity: .5; } 30% { transform: translateY(-4px); opacity: 1; } }
+
+  /* FRAMES */
+  .shot { width: 100%; border-radius: 2px; box-shadow: -16px 16px 0 0 var(--green); background: #fff; }
+  .phone { border: 10px solid var(--black); border-radius: 34px; overflow: hidden; background: #fff; box-shadow: -14px 14px 0 0 var(--green); }
+  .phone img { width: 100%; }
+  .phone.scroll { height: 600px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--green) transparent; }
+  .scroll-hint { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--green-text); margin-top: 10px; text-align: center; }
+  figure { margin: 0; }
+  figcaption, .caption { font-size: 13px; color: var(--muted); margin-top: 24px; }
+  .pad-l { padding-left: 16px; }
+
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+  .two.lopsided { grid-template-columns: 1.2fr 1fr; }
+  .two.narrow-fig { grid-template-columns: 1.35fr 1fr; }
+  .two.center { align-items: center; }
+  .phone-col { max-width: 290px; margin: 0 auto; width: 100%; }
+
+  /* HERO: TL;DR as a Gumtree ad */
+  .hero { display: grid; grid-template-columns: 1.45fr 1fr; gap: 72px; align-items: start; }
+  .listing { border: 2px solid var(--black); border-radius: 2px; background: #fff; box-shadow: -10px 10px 0 0 var(--green); }
+  .listing .top { padding: 20px 24px 16px; border-bottom: 1px solid var(--line); }
+  .listing .price { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 6px; }
+  .listing .price b { font-family: 'Domine', Georgia, serif; font-size: 26px; }
+  .pill { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 3px 10px; border-radius: 999px; white-space: nowrap; }
+  .pill.verified { color: #2F6A1A; border: 1.5px solid #4E9A2A; }
+  .pill.verified::before { content: '✓'; font-size: 12px; }
+  .pill.blue { background: var(--sd-blue-tint); color: var(--sd-blue); }
+  .listing .top p { margin: 0; font-size: 15px; color: var(--muted); }
+  .protect { display: flex; align-items: center; gap: 10px; background: var(--sd-blue-tint); color: var(--sd-blue); font-size: 14px; font-weight: 600; padding: 10px 24px; }
+  .listing dl { display: grid; grid-template-columns: 150px 1fr; }
+  .listing dt, .listing dd { padding: 14px 24px; border-top: 1px solid var(--line); font-size: 15px; }
+  .listing dl > :nth-child(1), .listing dl > :nth-child(2) { border-top: 0; }
+  .listing dt { font-size: 13px; font-weight: 600; color: var(--muted); padding-top: 16px; }
+  .listing dd { padding-left: 0; }
+
+  /* PROBLEM: the chat that starts every sketchy meetup */
+  .thread { max-width: 380px; border: 2px solid var(--black); border-radius: 2px; background: #fff; box-shadow: -10px 10px 0 0 var(--green); padding: 18px 18px 22px; display: flex; flex-direction: column; gap: 10px; transform: rotate(1.5deg); }
+  .thread .who { font-size: 12px; font-weight: 600; color: var(--muted); border-bottom: 1px solid var(--line); padding-bottom: 10px; margin-bottom: 4px; display: flex; justify-content: space-between; }
+  .bub { font-size: 15px; line-height: 1.4; padding: 9px 14px; border-radius: 16px 16px 16px 4px; background: var(--bubble-in); max-width: 82%; align-self: flex-start; }
+  .bub.me { background: var(--sd-blue); color: #fff; border-radius: 16px 16px 4px 16px; align-self: flex-end; }
+  .callout { border-left: 4px solid var(--green); padding: 4px 0 4px 20px; font-size: 19px; font-weight: 500; margin: 8px 0 0; }
+
+  /* RESEARCH */
+  .stack { padding: 8px 0 0 16px; }
+  .stack .back { display: grid; grid-template-columns: 1.2fr 1fr; gap: 24px; margin-top: 40px; align-items: start; }
+  .stack .back img { border: 2px solid var(--black); border-radius: 2px; background: #fff; }
+  .stack .back figure:nth-child(1) { transform: rotate(-1.5deg); }
+  .stack .back figure:nth-child(2) { transform: rotate(1.8deg); margin-top: 22px; }
+  .qs { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 8px 0 24px; }
+  .q { border: 2px solid var(--black); border-radius: 2px; padding: 16px 18px; background: #fff; font-size: 15px; }
+  .q b { display: block; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--green-text); margin-bottom: 6px; }
+  .flows { display: grid; grid-template-columns: 1fr 1.15fr; gap: 48px; margin-top: 88px; align-items: end; padding-left: 16px; }
+
+  /* SOLUTION */
+  .block { margin-top: 96px; }
+  .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-top: 48px; padding-left: 16px; align-items: start; }
+  .wide { margin-top: 56px; padding-left: 16px; }
+  .feature + .feature { margin-top: 28px; }
+  .feature p { margin-bottom: 0; }
+
+  /* ILLUSTRATIONS: the hat that wasn't mine */
+  .hat { background: var(--sd-blue-tint); border-radius: 2px; padding: 40px 44px; margin-top: 112px; display: grid; grid-template-columns: auto 1fr; gap: 36px; align-items: center; }
+  .hat .badge { width: 132px; height: 132px; border-radius: 50%; background: var(--sd-blue); color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; line-height: 1.3; transform: rotate(-8deg); border: 3px dashed #fff; outline: 3px solid var(--sd-blue); }
+  .hat .badge span { font-family: 'Domine', Georgia, serif; font-size: 30px; letter-spacing: 0; text-transform: none; }
+  .hat h3 { font-family: 'Domine', Georgia, serif; font-size: 26px; line-height: 1.25; margin-bottom: 12px; }
+  .hat p:last-child { margin-bottom: 0; }
+
+  /* GUMTREE STORES */
+  .taped { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 56px; margin-top: 48px; align-items: start; }
+  .taped figure { position: relative; }
+  .taped img { border: 2px solid var(--black); border-radius: 2px; background: #fff; }
+  .taped figure:nth-child(1) { transform: rotate(-2deg); margin-top: 24px; }
+  .taped figure:nth-child(2) { transform: rotate(1deg); }
+  .taped figure::before { content: ''; position: absolute; top: -13px; left: 50%; width: 100px; height: 26px; transform: translateX(-50%) rotate(-3deg); background: rgba(115,171,132,.55); z-index: 1; }
+  .stamp { position: absolute; top: -16px; right: -12px; background: var(--black); color: var(--bg); font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 4px 10px; transform: rotate(-6deg); z-index: 2; }
+  .stamp.after { background: var(--sd-blue); color: #fff; }
+
+  /* VALIDATION */
+  .quote { border: 2px solid var(--black); border-radius: 18px 18px 18px 2px; padding: 26px 28px; background: var(--sd-blue-tint); margin: 0; transform: rotate(1.2deg); box-shadow: -10px 10px 0 0 var(--green); }
+  .quote p { font-family: 'Domine', Georgia, serif; font-size: 21px; line-height: 1.45; margin-bottom: 0; }
+
+  /* OUTCOME: order activity */
+  .activity { border: 2px solid var(--black); border-radius: 2px; background: #fff; box-shadow: -10px 10px 0 0 var(--green); padding: 22px 26px 8px; }
+  .activity .head { display: flex; align-items: center; gap: 12px; font-weight: 600; margin-bottom: 18px; }
+  .activity .pill { background: #E2F2EC; color: #1F6B4F; }
+  .activity ol { list-style: none; position: relative; }
+  .activity li { position: relative; padding: 0 0 22px 32px; }
+  .activity li::before { content: ''; position: absolute; left: 5px; top: 7px; width: 12px; height: 12px; border-radius: 50%; background: var(--sd-blue); box-shadow: 0 0 0 4px var(--sd-blue-tint); }
+  .activity li::after { content: ''; position: absolute; left: 10px; top: 22px; bottom: 2px; width: 2px; background: var(--sd-blue-tint); }
+  .activity li:last-child::after { display: none; }
+  .activity li b { display: block; }
+  .activity li span { font-size: 15px; color: var(--muted); }
+  .closing { font-family: 'Domine', Georgia, serif; font-size: 26px; line-height: 1.4; text-align: center; max-width: 820px; margin: 80px auto 0; }
+
+  /* CONTACT (SafeDeal version of the cat closer: copy left, cat right) */
+  .bolt { text-align: center; padding: 0 0 48px; }
+  .bolt svg { width: 22px; height: 36px; }
+  .closer { display: flex; align-items: center; justify-content: center; gap: 48px; max-width: 920px; margin: 0 auto; padding: 0 20px 72px; }
+  .closer .cat { flex-shrink: 0; display: block; }
+  .closer .cat img { width: 260px; transition: transform .2s; }
+  .closer .cat:hover img, .closer .cat:focus-visible img { transform: scale(1.05) rotate(-2deg); }
+  .closer p { font-size: 26px; line-height: 1.4; max-width: 520px; margin: 0; text-align: right; }
+  .closer p a { color: var(--green-text); text-decoration: none; }
+  .closer p a:hover { text-decoration: underline; }
+  .arr-d { display: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .typing i { animation: none; }
+  }
+
+  @media (max-width: 860px) {
+    nav.top { padding: 16px 20px; flex-wrap: wrap; gap: 12px; }
+    .nav-links { gap: 20px; font-size: 14px; }
+    .container { padding: 0 20px; }
+    .case-title { font-size: 32px; margin-top: 32px; }
+    .case-meta { margin-bottom: 40px; }
+    section.container { margin-bottom: 88px; }
+    .msg { font-size: 22px; padding: 11px 20px 13px; }
+    .hero, .two, .two.lopsided, .two.narrow-fig, .duo, .flows, .taped, .qs { grid-template-columns: 1fr; gap: 40px; }
+    .listing dl { grid-template-columns: 1fr; }
+    .listing dt { padding-bottom: 0; border-top: 1px solid var(--line); }
+    .listing dd { border-top: 0; padding: 4px 24px 14px; }
+    .phone.scroll { height: 520px; }
+    .thread, .quote { transform: none; }
+    .stack .back { grid-template-columns: 1fr; }
+    .stack .back figure:nth-child(2) { margin-top: 0; }
+    .flows { margin-top: 56px; }
+    .block { margin-top: 72px; }
+    .hat { grid-template-columns: 1fr; padding: 28px 24px; margin-top: 80px; gap: 24px; }
+    .hat .badge { width: 104px; height: 104px; }
+    .hat .badge span { font-size: 24px; }
+    .taped figure:nth-child(1) { margin-top: 0; }
+    .quote p { font-size: 18px; }
+    .closing { font-size: 20px; }
+    .closer { flex-direction: column; text-align: center; gap: 24px; }
+    .closer p { font-size: 20px; text-align: center; }
+    .arr-r { display: none; }
+    .arr-d { display: inline; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-head">
+<nav class="top">
+  <div class="nav-left">
+    <a href="index.html" class="back-arrow" aria-label="Back to portfolio">←</a>
+    <a href="index.html" class="nav-logo"><img src="assets/gumtree-logo.png" alt="Gumtree"></a>
+  </div>
+  <div class="nav-links">
+    <a href="index.html#projects">Projects</a>
+    <a href="https://www.figma.com/proto/nMn6pYhBxPxgOAaEHNsEd8/Portfolio-Prototype?node-id=1647-56592&amp;starting-point-node-id=1647-56592&amp;scaling=scale-down-width&amp;content-scaling=fixed" target="_blank" rel="noopener">Testimonials</a>
+    <a href="#contact">Contact</a>
+    <a href="https://www.linkedin.com/in/chanel-carstens-UX-designer" target="_blank" rel="noopener" class="external">LinkedIn</a>
+  </div>
+</nav>
+</header>
+
+<main>
+
+<div class="container">
+  <h1 class="case-title">Never meet people from <em>the internet</em></h1>
+  <div class="case-meta">
+    <span><b>Gumtree South Africa</b> · Marketplace and payments</span>
+    <span><b>Role</b> · Product Designer</span>
+    <span><b>When</b> · 2023 to 2024</span>
+    <span><b>Platforms</b> · Desktop, mobile web and native app</span>
+  </div>
+</div>
+
+<!-- HERO + TL;DR -->
+<section class="container">
+  <div class="hero">
+    <div class="listing">
+      <div class="top">
+        <div class="price"><b>SafeDeal by Gumtree</b><span class="pill verified">Verified</span></div>
+        <p>Now live as Pay &amp; Ship · Nationwide</p>
+      </div>
+      <div class="protect"><svg width="16" height="18" viewBox="0 0 16 18" aria-hidden="true"><path d="M8 0 0 3v6c0 4.4 3.4 8.2 8 9 4.6-.8 8-4.6 8-9V3L8 0Zm-1.2 12.6L3.4 9.2l1.4-1.4 2 2 4.4-4.4 1.4 1.4-5.8 5.8Z" fill="currentColor"/></svg>Buyer protection guaranteed</div>
+      <dl>
+        <dt>The problem</dt>
+        <dd>Gumtree is one of the biggest marketplaces in South Africa, and most deals still meant meeting a stranger with a wad of cash.</dd>
+        <dt>The product</dt>
+        <dd>Buyers pay on Gumtree, have the item delivered or collect it at a Pargo pickup point, and get their money back if it isn't as described. TradeSafe holds the money until the buyer is happy.</dd>
+        <dt>My part</dt>
+        <dd>I owned the <strong>buyer journey</strong>: checkout, returns and disputes, post-purchase tracking, make an offer and ratings, across desktop, mobile web and the native app. I also ran the usability testing for it.</dd>
+        <dt>The team</dt>
+        <dd>Me, another senior designer who owned the seller side, and a PM, working with TradeSafe on payments and Pargo on delivery.</dd>
+        <dt>Extra hat</dt>
+        <dd>The product needed far more illustrations than the existing pack covered, so I drew them (I am not an illustrator). Gumtree still uses them.</dd>
+        <dt>Outcome</dt>
+        <dd>The returns policy was thorough enough that a <strong>local competitor changed theirs to match</strong>.</dd>
+      </dl>
+    </div>
+    <figure class="phone-col">
+      <div class="phone"><img src="assets/safedeal-success.jpg" alt="SafeDeal purchase confirmation in the Gumtree app, with an illustration of two people high-fiving over a braai"></div>
+      <figcaption style="text-align:center">Object 1: The app's purchase confirmation, illustration by me.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- CONTEXT -->
+<section class="container" id="context">
+  <div class="two narrow-fig">
+    <div>
+      <span class="eyebrow">Context</span>
+      <h2 class="msg out">Saw it on Gumtree</h2>
+      <span class="msg-meta" aria-hidden="true">09:41 <span class="ticks">✓✓</span></span>
+      <h3 class="sub">Old name, brand new problem to solve</h3>
+      <p class="lead">Everyone in South Africa knows Gumtree. SafeDeal was a chance to make something that familiar feel new: a marketplace where you can pay, ship and get your money back without leaving it.</p>
+      <p>And Gumtree's users are everyone, including people on small, low-res phones with slow connections, and people who have been burned before.</p>
+    </div>
+    <figure class="phone-col">
+      <div class="phone scroll" tabindex="0" aria-label="Scrollable Gumtree ad page with Pay and Ship"><img src="assets/safedeal-scroll-mobile.png" alt="A Gumtree ad for a Samsung phone with a Buy now button, buyer protection, a Pay and Ship how-it-works section and the seller's rating and tags"></div>
+      <p class="scroll-hint">Scroll the phone ↓</p>
+      <figcaption style="text-align:center;margin-top:10px">Object 2: A familiar Gumtree ad. Everything blue is new.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="container" id="problem">
+  <div class="two center">
+    <div>
+      <span class="eyebrow">Problem</span>
+      <div class="typing" aria-hidden="true"><i></i><i></i><i></i></div><br>
+      <h2 class="msg">Meet me in a public place, bring cash</h2>
+      <span class="msg-meta" aria-hidden="true">Seller · 09:43</span>
+      <p class="lead">You spot something great on Gumtree. Now you have to draw a wad of cash, meet a stranger somewhere you've never been, and hope the item works when you get home.</p>
+      <p class="callout">Buyers wanted protection from sellers, and sellers wanted protection from buyers. Both were right to be careful, because this was people's money.</p>
+    </div>
+    <div class="thread" aria-hidden="true">
+      <div class="who"><span>Chat about: Samsung Galaxy Z Fold 4</span><span>R8,999</span></div>
+      <div class="bub me">Hi, is this still available?</div>
+      <div class="bub">Yes. Cash only. Meet at the garage on Main Road at 7?</div>
+      <div class="bub me">Can I EFT you?</div>
+      <div class="bub">Cash only, sorry. Come alone</div>
+      <div class="bub me">…</div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH -->
+<section class="container" id="research">
+  <div class="two">
+    <div>
+      <span class="eyebrow">Research</span>
+      <h2 class="msg out">Is this still available?</h2>
+      <span class="msg-meta" aria-hidden="true">09:44 <span class="ticks">✓✓</span></span>
+      <p>When I joined, some screens were designed but the foundational decisions weren't. Having come from payment flows at Ozow, I paused the screens and worked through with the PM what TradeSafe, our payment partner, could and couldn't do.</p>
+      <p>One local competitor was already doing something similar. I spoke to people who had used it, and their frustrations became my checklist.</p>
+      <p>The hard questions were policy and logistics, and every day added to one side's timeline was a day taken from the other's:</p>
+      <div class="qs">
+        <div class="q"><b>Buyers</b>If the seller never ships, when do I get my money back, and what counts as "not as described"?</div>
+        <div class="q"><b>Sellers</b>When do I get paid, and what protects me from a false claim?</div>
+      </div>
+    </div>
+    <div class="stack">
+      <figure>
+        <img src="assets/safedeal-research-1.jpg" alt="Market research board comparing competitor marketplaces, with findings, screenshots and summaries of what each does well and badly" class="shot">
+        <figcaption>Object 3: Competitor research, with findings and summaries per platform.</figcaption>
+      </figure>
+      <div class="back">
+        <figure>
+          <img src="assets/safedeal-research-3.jpg" alt="Findings and summary boards for two more competitor platforms">
+          <figcaption>Object 4: More competitor findings.</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/safedeal-research-2.jpg" alt="Notes comparing the language competitors use for buyer protection and authentication">
+          <figcaption>Object 5: Language checks.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+
+  <div class="flows">
+    <figure>
+      <img src="assets/safedeal-flow-no-shipping.jpg" alt="User flows for a buyer winning a dispute without shipping and a seller winning a dispute without shipping, with notification updates marked" class="shot">
+      <figcaption>Object 6: Dispute outcomes when nothing needs to be shipped back.</figcaption>
+    </figure>
+    <figure>
+      <img src="assets/safedeal-flow-dispute.jpg" alt="A longer dispute user flow with decision points and notes" class="shot">
+      <figcaption>Object 7: A full dispute flow with every decision point.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section class="container" id="solution">
+  <div class="two narrow-fig center">
+    <div>
+      <span class="eyebrow">Solution</span>
+      <h2 class="msg">No more parking lots</h2>
+      <span class="msg-meta" aria-hidden="true">SafeDeal · 09:46</span>
+      <p class="lead">I owned everything the buyer touches, across desktop, mobile web and the native app.</p>
+      <p><strong>Trust through familiarity.</strong> I kept Gumtree's green and brought in blue for SafeDeal, so it felt like the Gumtree people knew, with something new and protected layered on top.</p>
+      <h3 class="sub" style="margin-top:36px">Checkout</h3>
+      <p>Checkout had to work for someone on a small phone typing an address for the first time. Buyers choose courier delivery or a nearby Pargo pickup point, and I designed for the Pargo and Google Places plugins failing too.</p>
+    </div>
+    <figure class="phone-col">
+      <div class="phone"><img src="assets/safedeal-checkout-delivery.jpg" alt="SafeDeal checkout delivery step with courier delivery for R90 or a Pargo pickup point for R70, with two nearby pickup points listed"></div>
+      <figcaption style="text-align:center">Object 8: Choosing delivery in the app.</figcaption>
+    </figure>
+  </div>
+  <figure class="wide">
+    <img src="assets/safedeal-checkout-errors.jpg" alt="Desktop checkout screens, including error states for when Google Places or the Pargo plugin fails" class="shot">
+    <figcaption>Object 9: Desktop checkout, including the Google Places and Pargo plugin error states.</figcaption>
+  </figure>
+
+  <div class="two block">
+    <div>
+      <h3 class="sub">Returns and disputes</h3>
+      <p>Returns and disputes were the most complex part, with a separate flow on every surface for refunds with and without a return, sellers disputing a claim, and items sent fraudulently.</p>
+      <p>Shipping confirmation alone could never start the refund clock. A seller could mark an item as shipped without sending it, and Pargo could take up to two days to log a drop-off.</p>
+    </div>
+    <figure class="pad-l">
+      <img src="assets/safedeal-dispute-tracker.jpg" alt="A top-level dispute tracker for buyer and seller, and a grid of notification states" class="shot">
+      <figcaption>Object 10: The dispute tracker for both sides, and its notification states.</figcaption>
+    </figure>
+  </div>
+  <figure class="wide">
+    <img src="assets/safedeal-dispute-app.jpg" alt="The buyer dispute flow in the app, screen by screen" class="shot">
+    <figcaption>Object 11: The buyer dispute flow in the app.</figcaption>
+  </figure>
+
+  <div class="two narrow-fig center block">
+    <div>
+      <div class="feature">
+        <h3 class="sub">Post-purchase tracking</h3>
+        <p>It gave buyers something Gumtree had never had: an order timeline, delivery details and a collection PIN.</p>
+      </div>
+      <div class="feature">
+        <h3 class="sub">Make an offer</h3>
+        <p>Buyers negotiate inside Gumtree instead of haggling off-platform, so the whole deal stays protected and tracked.</p>
+      </div>
+      <div class="feature">
+        <h3 class="sub">Ratings</h3>
+        <p>Ratings walk buyers through rating a seller step by step, so they know what's expected at each one. The tags it produces, like Quick shipper and Great packaging, show on every ad (Object 2).</p>
+      </div>
+    </div>
+    <figure class="phone-col">
+      <div class="phone"><img src="assets/safedeal-post-purchase.jpg" alt="Post-purchase screen showing the order progress, a shipping PIN code of 26301 and the order activity timeline"></div>
+      <figcaption style="text-align:center">Object 12: Post-purchase tracking with a collection PIN.</figcaption>
+    </figure>
+  </div>
+  <figure class="wide">
+    <img src="assets/safedeal-make-offer.jpg" alt="The make an offer flow for buyer and seller, including declined and counter offers" class="shot">
+    <figcaption>Object 13: Part of the make an offer flow.</figcaption>
+  </figure>
+
+  <div class="hat">
+    <div class="badge" aria-hidden="true"><span>New</span>hat<br>unlocked</div>
+    <div>
+      <h3>The illustrations nobody had budgeted for</h3>
+      <p>In testing, illustrations made an unfamiliar, money-handling product feel approachable. But Gumtree only had its green and gold set, which covered a fraction of what SafeDeal needed. Rather than wait for an illustrator, I drew every blue illustration in the product as the screens needed it. Gumtree still uses them. You can see them in Objects 1 and 2.</p>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="measure">
+      <h3 class="sub">A bonus for Gumtree Stores sellers</h3>
+      <p>Alongside SafeDeal, I redesigned the Gumtree Stores insights dashboards. The old Gumtree for Business reports were spread across eight tabs of tables and empty charts. The new Insights page puts sales, leads, store performance, views, listings and traffic on one screen, on desktop and mobile, so business sellers can see what's working at a glance.</p>
+    </div>
+    <div class="taped">
+      <figure>
+        <span class="stamp">Before</span>
+        <img src="assets/gumtree-reports-before.jpg" alt="The old Gumtree for Business reports page with eight tabs, a leads bar chart and an empty leads table">
+        <figcaption>Object 14: The old Gumtree for Business reports.</figcaption>
+      </figure>
+      <figure>
+        <span class="stamp after">After</span>
+        <img src="assets/gumtree-insights-desktop.jpg" alt="The new Insights dashboard with sales over time, headline figures for sales, leads, views, listings and conversion rate, and leads by category and channel">
+        <figcaption>Object 15: The new Insights dashboard (top of the page).</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- VALIDATION -->
+<section class="container" id="validation">
+  <div class="two center val">
+    <div>
+      <span class="eyebrow">Validation</span>
+      <h2 class="msg out">Testing meant leaving the building</h2>
+      <span class="msg-meta" aria-hidden="true">10:15 <span class="ticks">✓✓</span></span>
+      <ul class="facts">
+        <li><strong>I shipped parcels through Pargo myself</strong> to see their correspondence, their timing and what a buyer actually experiences from drop-off to collection.</li>
+        <li><strong>I visited Pargo pickup and drop-off points</strong> to see what people find when they walk in: the signage, what they say to staff and what they need to bring.</li>
+        <li><strong>I ran usability testing on the buyer journey.</strong> Participants flagged too many notifications as a negative, and the parcel experiment showed me exactly where our messages should and shouldn't appear.</li>
+      </ul>
+      <p>Testing also showed sellers wanted their money the moment they shipped, while buyers wanted two weeks to decide. That shaped the final returns window and the logic that closes a deal automatically.</p>
+    </div>
+    <blockquote class="quote">
+      <p>One moment stuck with me. A participant said the best part of the whole session was walking to the Pargo store together to drop off the parcel. That's when you know the design lives in the real world, not just on a screen.</p>
+    </blockquote>
+  </div>
+  <figure class="wide" style="margin-top:72px">
+    <img src="assets/safedeal-checkout-app-flow.jpg" alt="The full buyer checkout flow in the app, from delivery through payment" class="shot">
+    <figcaption>Object 16: The buyer checkout flow in the app.</figcaption>
+  </figure>
+</section>
+
+<!-- OUTCOME -->
+<section class="container" id="outcome">
+  <div class="two center">
+    <div>
+      <span class="eyebrow">Outcome</span>
+      <h2 class="msg done">Deal done</h2>
+      <span class="msg-meta" aria-hidden="true">Delivered <span class="ticks">✓✓</span></span>
+      <p class="lead">Gumtree went from a place where you met strangers in parking lots to one where you can buy from anyone in South Africa, pay on the platform and get your money back if the item isn't as described.</p>
+    </div>
+    <div class="activity">
+      <div class="head">Order activity <span class="pill">Completed</span></div>
+      <ol>
+        <li><b>Live today as Pay &amp; Ship</b><span>With buyer protection on every eligible ad and nationwide delivery from R70.</span></li>
+        <li><b>A local competitor changed its returns policy to match ours</b><span>That outcome has nothing to do with pixels.</span></li>
+        <li><b>The illustrations I drew are still in use</b><span>Across the product.</span></li>
+        <li><b>Trust came first on purpose</b><span>SafeDeal went ahead of Gumtree Stores because sellers' stores only matter once buyers trust the platform with their money.</span></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div class="closer" id="contact">
+  <p>While you reminisce about the sketchy meetups you've had, you're welcome to <a href="mailto:c.carstens21@gmail.com?subject=We%E2%80%99re%20obsessed!!&amp;body=Wow%20Chanel!%20You%20seem%20amazing.%20We%20would%20love%20to%20work%20with%20you!">mail me</a> any questions you may have or concepts you'd like to discuss. Just click on this green box <span class="arr-r">→</span><span class="arr-d">↓</span> or look at some of my <a href="index.html#projects">other projects</a>.</p>
+  <a class="cat" href="mailto:c.carstens21@gmail.com?subject=We%E2%80%99re%20obsessed!!&amp;body=Wow%20Chanel!%20You%20seem%20amazing.%20We%20would%20love%20to%20work%20with%20you!" aria-label="Email Chanél">
+    <img src="assets/safedeal-contact-cat.png" alt="My cat in pixel sunglasses beside a green mail button">
+  </a>
+</div>
+
+<div class="bolt" aria-hidden="true">
+  <svg viewBox="0 0 22 36"><polygon points="13,0 0,20 9,20 7,36 22,14 13,14 17,0" fill="#73AB84"/></svg>
+</div>
+
+<script>
+  (function () {
+    var h = document.querySelector('.site-head');
+    function onScroll() { h.classList.toggle('scrolled', window.scrollY > 8); }
+    window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+  })();
+</script>
+</body>
+</html>
